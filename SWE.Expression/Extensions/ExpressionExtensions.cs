@@ -27,9 +27,65 @@
 
             var expression = Expression.Lambda<Func<T, bool>>(propertyPredicate.Body, propertySelector.Parameters);
             var rebinder = new ParamExpressionToMemberExpressionRebinder(propertyPredicate.Parameters[0], memberExpression);
-            expression = (Expression<Func<T, bool>>)rebinder.Visit(expression);
 
-            return expression;
+            return (Expression<Func<T, bool>>)rebinder.Visit(expression);
+        }
+
+        /// <summary>
+        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="selector"></param>
+        /// <param name="value"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T> ToAction<T, TValue>(
+            this Expression<Func<T, TValue>> selector,
+            TValue value)
+        {
+            Expression<Func<TValue>> valueExpression = () => value;
+
+            return ToAction(selector, valueExpression);
+        }
+
+        /// <summary>
+        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue">Value to be set.</typeparam>
+        /// <param name="selector"></param>
+        /// <param name="valueExpression"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T> ToAction<T, TValue>(
+            this Expression<Func<T, TValue>> selector,
+            Expression<Func<TValue>> valueExpression)
+        {
+            var entityParameterExpression = (ParameterExpression)
+                ((MemberExpression)selector.Body).Expression;
+
+            return Expression.Lambda<Action<T>>(
+                Expression.Assign(selector.Body, valueExpression.Body),
+                entityParameterExpression).Compile();
+        }
+
+        /// <summary>
+        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue">Value to be set.</typeparam>
+        /// <param name="selector"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T, TValue> ToSetAction<T, TValue>(this Expression<Func<T, TValue>> selector)
+        {
+            var entityParameterExpression =
+                (ParameterExpression)((MemberExpression)selector.Body).Expression;
+
+            var valueParameterExpression = Expression.Parameter(typeof(TValue));
+
+            return Expression.Lambda<Action<T, TValue>>(
+                Expression.Assign(selector.Body, valueParameterExpression),
+                entityParameterExpression,
+                valueParameterExpression).Compile();
         }
 
         /// <summary>

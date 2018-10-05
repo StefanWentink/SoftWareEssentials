@@ -1,4 +1,4 @@
-﻿namespace SWE.BasicType.Extensions
+﻿namespace SWE.Collection.Extensions
 {
     using System;
     using System.Collections;
@@ -79,29 +79,37 @@
             bool removeAllMatchingInstances,
             bool replaceAllMatchingInstances)
         {
-            var result = false;
             var comparePredicate = new Predicate<T>(compareFunction);
             var index = list.FindIndex(comparePredicate);
+
+            var replacementIndexes = new List<int>();
 
             while (index >= 0)
             {
                 list.RemoveAt(index);
 
-                if (!result || replaceAllMatchingInstances)
-                {
-                    list.Insert(index, value);
-                    result = true;
-                }
-
                 if (!removeAllMatchingInstances)
                 {
+                    list.Insert(index, value);
                     return true;
                 }
 
-                index = list.FindIndex(index, comparePredicate);
+                if (replaceAllMatchingInstances || !replacementIndexes.Any())
+                {
+                    replacementIndexes.Add(index);
+                }
+
+                index = replaceAllMatchingInstances || removeAllMatchingInstances
+                    ? list.FindIndex(index, comparePredicate)
+                    : -1;
             }
 
-            return result;
+            foreach (var replacementIndex in replacementIndexes.OrderByDescending(x => x))
+            {
+                list.Insert(replacementIndex, value);
+            }
+
+            return replacementIndexes.Any();
         }
 
         /// <summary>

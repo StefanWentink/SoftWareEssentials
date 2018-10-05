@@ -26,6 +26,54 @@ namespace SWE.Expression.Test.Extensions
 
         [Fact]
         [Category("ExpressionExtensions")]
+        public void ToAction_ShouldSetValue_With_ValueExpressionClosure()
+        {
+            var person = new PersonStub("Stefan", "Wentink");
+            var name = "John";
+            var action = ExpressionExtensions.ToAction<PersonStub, string>(x => x.FirstName, () => name);
+            Assert.Equal("Stefan", person.FirstName);
+
+            action(person);
+            Assert.Equal("John", person.FirstName);
+
+            name = "Dick";
+            action(person);
+            Assert.Equal("Dick", person.FirstName);
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
+        public void ToAction_Should_SetValue_With_Value()
+        {
+            var person = new PersonStub("Stefan", "Wentink");
+            var name = "John";
+            var action = ExpressionExtensions.ToAction<PersonStub, string>(x => x.FirstName, name);
+            Assert.Equal("Stefan", person.FirstName);
+
+            action(person);
+            Assert.Equal("John", person.FirstName);
+
+            name = "Dick";
+            action(person);
+            Assert.Equal("John", person.FirstName);
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
+        public void ToAction_Should_SetValue()
+        {
+            var person = new PersonStub("Stefan", "Wentink");
+            var action = ExpressionExtensions.ToSetAction<PersonStub, string>(x => x.FirstName);
+            Assert.Equal("Stefan", person.FirstName);
+
+            action(person, "John");
+            Assert.Equal("John", person.FirstName);
+
+            action(person, "Dick");
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
         public void CombineExpressionAnd_Should_ReturnValidExpression_WhenTypesAreEqual()
         {
             var expression = _personExpression1.CombineExpressionAnd(_personExpression2);

@@ -31,4 +31,15 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Container\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SWE.Collection\SWE.Collection.csproj" />
+    <ProjectReference Include="..\SWE.Expression\SWE.Expression.csproj" />
+    <ProjectReference Include="..\SWE.Reflection\SWE.Reflection.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,11 +6,12 @@
 
     internal static class PersonFactory
     {
-        internal static IEnumerable<PersonStub> List { get; } = new List<PersonStub>
-                                                             {
-                                                                 new PersonStub("Jan", "Jansen"),
-                                                                 new PersonStub("Henk", "Jansen"),
-                                                                 new PersonStub("Piet", "Visser")
-                                                             };
+        internal static IEnumerable<PersonStub> List { get; }
+            = new List<PersonStub>
+            {
+                new PersonStub("Jan", "Jansen"),
+                new PersonStub("Henk", "Jansen"),
+                new PersonStub("Piet", "Visser")
+            };
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace SWE.BasicType.Utilities
+﻿namespace SWE.Collection.Utilities
 {
     using System;
-    using System.Collections;
 
     public static class CollectionUtilities
     {

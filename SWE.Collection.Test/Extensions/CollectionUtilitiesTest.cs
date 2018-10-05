@@ -1,10 +1,8 @@
 ﻿namespace SWE.BasicType.Extensions
 {
-    using System;
     using SWE.Xunit.Attributes;
-    using System.Collections.Generic;
     using global::Xunit;
-    using System.Linq;
+    using SWE.Collection.Utilities;
 
     public class CollectionUtilitiesTest
     {
@@ -12,14 +10,14 @@
         [Category("CollectionUtilities")]
         public void CalculateTakeByRecordCount_Should_ReturnTake_WhenRecordCountNegative()
         {
-            Assert.Equal(1, Utilities.CollectionUtilities.CalculateTakeByRecordCount(0, 1, -1));
+            Assert.Equal(1, CollectionUtilities.CalculateTakeByRecordCount(0, 1, -1));
         }
 
         [Fact]
         [Category("CollectionUtilities")]
         public void CalculateTakeByRecordCount_Should_Return0_WhenRecordCount0()
         {
-            Assert.Equal(0, Utilities.CollectionUtilities.CalculateTakeByRecordCount(0, 1, 0));
+            Assert.Equal(0, CollectionUtilities.CalculateTakeByRecordCount(0, 1, 0));
         }
 
         [Theory]
@@ -33,7 +31,7 @@
             int recordCount,
             int expected)
         {
-            Assert.Equal(expected, Utilities.CollectionUtilities.CalculateTakeByRecordCount(skip, take, recordCount));
+            Assert.Equal(expected, CollectionUtilities.CalculateTakeByRecordCount(skip, take, recordCount));
         }
 
         [Theory]
@@ -48,7 +46,7 @@
             int maxTake,
             int expected)
         {
-            Assert.Equal(expected, Utilities.CollectionUtilities.CalculateTakeByMaxTake(skip, take, maxTake));
+            Assert.Equal(expected, CollectionUtilities.CalculateTakeByMaxTake(skip, take, maxTake));
         }
     }
 }

@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using global::Xunit;
     using System.Linq;
+    using SWE.Collection.Extensions;
     using SWE.Collection.Test.Data;
 
     public class CollectionExtensionsTest
@@ -44,7 +45,7 @@
             var collection = CollectionFactory.GetDefaultList();
             var value = CollectionFactory.GetDefaultValue(CollectionFactory.StartingValue - 1);
 
-            collection.UpdateOrAddItem(value, x => x.key == value.key, true, true);
+            collection.UpdateOrAddItem(value, x => x.value == value.value, true, true);
 
             Assert.Equal(4, collection.Count);
             Assert.Single(collection.Where(x => x.key == CollectionFactory.StartingValue));
@@ -60,7 +61,7 @@
             var collection = CollectionFactory.GetDefaultList();
             var value = CollectionFactory.GetDefaultValue(CollectionFactory.StartingValue);
 
-            collection.UpdateOrAddItem(value, x => x.key == value.key, false, false);
+            collection.UpdateOrAddItem(value, x => x.value == value.value, false, false);
 
             Assert.Equal(3, collection.Count);
             Assert.Empty(collection.Where(x => x.key == CollectionFactory.StartingValue));
@@ -76,7 +77,7 @@
             var collection = CollectionFactory.GetDefaultList();
             var value = CollectionFactory.GetDefaultValue(CollectionFactory.StartingValue);
 
-            collection.UpdateOrAddItem(value, x => x.key == value.key, true, false);
+            collection.UpdateOrAddItem(value, x => x.value == value.value, true, false);
 
             Assert.Equal(2, collection.Count);
             Assert.Empty(collection.Where(x => x.key == CollectionFactory.StartingValue));
@@ -92,7 +93,7 @@
             var collection = CollectionFactory.GetDefaultList();
             var value = CollectionFactory.GetDefaultValue(CollectionFactory.StartingValue);
 
-            collection.UpdateOrAddItem(value, x => x.key == value.key, true, true);
+            collection.UpdateOrAddItem(value, x => x.value == value.value, true, true);
 
             Assert.Equal(3, collection.Count);
             Assert.Empty(collection.Where(x => x.key == CollectionFactory.StartingValue));

@@ -5,16 +5,16 @@ namespace SWE.Reflection.Test
 
     using SWE.Reflection.Extensions;
     using SWE.Reflection.Test.Data;
-
-    using Xunit;
+    using SWE.Xunit.Attributes;
+    using global::Xunit;
 
     public class ReflectionExtensionsTest
     {
-        private static readonly int IntPropertyValue = 23;
+        private const int IntPropertyValue = 23;
 
-        private static readonly double DoublePropertyValue = 34.5;
+        private const double DoublePropertyValue = 34.5;
 
-        private static readonly string StringPropertyValue = "Original";
+        private const string StringPropertyValue = "Original";
 
         private static readonly Guid GuidPropertyValue = Guid.NewGuid();
 
@@ -23,6 +23,36 @@ namespace SWE.Reflection.Test
         private ReflectionStub GetReflectionStub()
         {
             return new ReflectionStub(IntPropertyValue, DoublePropertyValue, StringPropertyValue, GuidPropertyValue, DateTimeOffsetPropertyValue);
+        }
+
+        [Fact]
+        [Category("ReflectionExtensions")]
+        public void MemberSelector_Should_ReturnSelector()
+        {
+            var selector = ReflectionExtensions.MemberSelector<ReflectionStub>(typeof(ReflectionStub), nameof(ReflectionStub.IntProperty));
+            var item = GetReflectionStub();
+            var actual = selector(item);
+            Assert.Equal(item.IntProperty, actual);
+        }
+
+        [Fact]
+        [Category("ReflectionExtensions")]
+        public void MemberSelector_Should_ReturnSelector_WhenItemParsed()
+        {
+            var item = GetReflectionStub();
+            var selector = ReflectionExtensions.MemberSelector<ReflectionStub>(item, nameof(ReflectionStub.IntProperty));
+            var actual = selector(item);
+            Assert.Equal(item.IntProperty, actual);
+        }
+
+        [Fact]
+        [Category("ReflectionExtensions")]
+        public void MemberSelector_Should_ThrowException_WhenTypeMismatched()
+        {
+            var item = GetReflectionStub();
+            var selector = ReflectionExtensions.MemberSelector<ReflectionStub>(item, nameof(ReflectionStub.StringProperty));
+            var actual = selector(item);
+            Assert.NotEqual(item.IntProperty, actual);
         }
 
         [Fact]

@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SWE.Reflection\SWE.Reflection.csproj" />
+    <ProjectReference Include="..\SWE.Xunit\SWE.Xunit.csproj" />
   </ItemGroup>
 
 </Project>
