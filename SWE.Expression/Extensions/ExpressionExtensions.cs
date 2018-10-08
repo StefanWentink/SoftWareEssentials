@@ -32,31 +32,31 @@
         }
 
         /// <summary>
-        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Assign"/> a properties value based on <see cref="selector"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="selector"></param>
         /// <param name="value"></param>
         /// <returns>Returns a function.</returns>
-        public static Action<T> ToAction<T, TValue>(
+        public static Action<T> ToSetAction<T, TValue>(
             this Expression<Func<T, TValue>> selector,
             TValue value)
         {
             Expression<Func<TValue>> valueExpression = () => value;
 
-            return ToAction(selector, valueExpression);
+            return ToSetAction(selector, valueExpression);
         }
 
         /// <summary>
-        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Assign"/> a properties value based on <see cref="selector"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue">Value to be set.</typeparam>
         /// <param name="selector"></param>
         /// <param name="valueExpression"></param>
         /// <returns>Returns a function.</returns>
-        public static Action<T> ToAction<T, TValue>(
+        public static Action<T> ToSetAction<T, TValue>(
             this Expression<Func<T, TValue>> selector,
             Expression<Func<TValue>> valueExpression)
         {
@@ -69,7 +69,7 @@
         }
 
         /// <summary>
-        /// Get an action that can set a properties value based on <see cref="selector"/>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Assign"/> a properties value based on <see cref="selector"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue">Value to be set.</typeparam>
@@ -84,6 +84,63 @@
 
             return Expression.Lambda<Action<T, TValue>>(
                 Expression.Assign(selector.Body, valueParameterExpression),
+                entityParameterExpression,
+                valueParameterExpression).Compile();
+        }
+
+        /// <summary>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Add"/> a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="selector"></param>
+        /// <param name="value"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T> ToAddAction<T, TValue>(
+            this Expression<Func<T, TValue>> selector,
+            TValue value)
+        {
+            Expression<Func<TValue>> valueExpression = () => value;
+
+            return ToAddAction(selector, valueExpression);
+        }
+
+        /// <summary>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Add"/> a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue">Value to be set.</typeparam>
+        /// <param name="selector"></param>
+        /// <param name="valueExpression"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T> ToAddAction<T, TValue>(
+            this Expression<Func<T, TValue>> selector,
+            Expression<Func<TValue>> valueExpression)
+        {
+            var entityParameterExpression = (ParameterExpression)
+                ((MemberExpression)selector.Body).Expression;
+
+            return Expression.Lambda<Action<T>>(
+                Expression.AddAssignChecked(selector.Body, valueExpression.Body),
+                entityParameterExpression).Compile();
+        }
+
+        /// <summary>
+        /// Get an <see cref="Action{T}"/> that can <see cref="Expression.Add"/> a properties value based on <see cref="selector"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue">Value to be set.</typeparam>
+        /// <param name="selector"></param>
+        /// <returns>Returns a function.</returns>
+        public static Action<T, TValue> ToAddAction<T, TValue>(this Expression<Func<T, TValue>> selector)
+        {
+            var entityParameterExpression =
+                (ParameterExpression)((MemberExpression)selector.Body).Expression;
+
+            var valueParameterExpression = Expression.Parameter(typeof(TValue));
+
+            return Expression.Lambda<Action<T, TValue>>(
+                Expression.AddAssignChecked(selector.Body, valueParameterExpression),
                 entityParameterExpression,
                 valueParameterExpression).Compile();
         }

@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SWE.BasicType.Date\SWE.BasicType.Date.csproj" />
     <ProjectReference Include="..\SWE.Expression\SWE.Expression.csproj" />
     <ProjectReference Include="..\SWE.Xunit\SWE.Xunit.csproj" />
   </ItemGroup>

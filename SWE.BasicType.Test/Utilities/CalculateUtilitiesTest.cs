@@ -63,5 +63,40 @@
             Assert.True(CalculateUtilities.TryAdd(baseValue, value, out var _result));
             Assert.Equal(new DateTime(2018, 1, 2, 12, 30, 45).ToLocalTime(), _result);
         }
+
+        [Fact]
+        [Category("CalculateUtilities")]
+        public void TryInvert_Should_ReturnTrue_When_Int()
+        {
+            const int value = 3;
+            Assert.True(CalculateUtilities.TryInvert(value, out var _result));
+            Assert.Equal(value * -1, _result);
+        }
+
+        [Fact]
+        [Category("CalculateUtilities")]
+        public void TryInvert_Should_ReturnTrue_When_Double()
+        {
+            const double value = 3.2;
+            Assert.True(CalculateUtilities.TryInvert(value, out var _result));
+            Assert.True(CompareUtilities.EqualsWithinTolerance(value * -1, _result, 6));
+        }
+
+        [Fact]
+        [Category("CalculateUtilities")]
+        public void TryInvert_Should_ReturnTrue_When_TimeSpan()
+        {
+            var value = TimeSpan.FromHours(3);
+            Assert.True(CalculateUtilities.TryInvert(value, out var _result));
+            Assert.Equal(value * -1, _result);
+        }
+
+        [Fact]
+        [Category("CalculateUtilities")]
+        public void TryInvert_Should_ReturnFalse_When_String()
+        {
+            const string value = "String";
+            Assert.False(CalculateUtilities.TryInvert(value, out _));
+        }
     }
 }

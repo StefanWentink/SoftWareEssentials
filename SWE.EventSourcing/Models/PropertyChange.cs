@@ -2,7 +2,6 @@
 {
     using SWE.EventSourcing.Interfaces;
     using SWE.Expression.Extensions;
-    using SWE.Reflection.Extensions;
     using System;
     using System.Linq.Expressions;
 
@@ -10,7 +9,9 @@
         : IPropertyChange<TValue>
         , IPropertyAction<T>
     {
-        private readonly Expression<Func<T, TValue>> _propertySelector;
+        private Action<T> _revertValueAction;
+
+        private Action<T> _valueAction;
 
         /// <summary>
         /// Expression setting a properties value. Must be at least internally visible.
@@ -33,17 +34,17 @@
         {
             PreviousValue = previousValue;
             Value = value;
-            _propertySelector = propertySelector;
+            PropertySelector = propertySelector;
         }
 
-        public Action<T> GetPreviousValueAction()
+        public Action<T> GetRevertValueAction()
         {
-            return PropertySelector.ToAction(PreviousValue);
+            return _revertValueAction ?? (_revertValueAction = PropertySelector.ToSetAction(PreviousValue));
         }
 
-        public Action<T> GetValueAction()
+        public Action<T> GetApplyValueAction()
         {
-            return PropertySelector.ToAction(Value);
+            return _valueAction ?? (_valueAction = PropertySelector.ToSetAction(Value));
         }
     }
 }

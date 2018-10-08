@@ -3,7 +3,6 @@ namespace SWE.Expression.Test.Extensions
     using System;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Threading.Tasks;
 
     using global::Xunit;
 
@@ -26,11 +25,11 @@ namespace SWE.Expression.Test.Extensions
 
         [Fact]
         [Category("ExpressionExtensions")]
-        public void ToAction_ShouldSetValue_With_ValueExpressionClosure()
+        public void ToSetAction_ShouldSetValue_With_ValueExpressionClosure()
         {
             var person = new PersonStub("Stefan", "Wentink");
             var name = "John";
-            var action = ExpressionExtensions.ToAction<PersonStub, string>(x => x.FirstName, () => name);
+            var action = ExpressionExtensions.ToSetAction<PersonStub, string>(x => x.FirstName, () => name);
             Assert.Equal("Stefan", person.FirstName);
 
             action(person);
@@ -43,11 +42,11 @@ namespace SWE.Expression.Test.Extensions
 
         [Fact]
         [Category("ExpressionExtensions")]
-        public void ToAction_Should_SetValue_With_Value()
+        public void ToSetAction_Should_SetValue_With_Value()
         {
             var person = new PersonStub("Stefan", "Wentink");
             var name = "John";
-            var action = ExpressionExtensions.ToAction<PersonStub, string>(x => x.FirstName, name);
+            var action = ExpressionExtensions.ToSetAction<PersonStub, string>(x => x.FirstName, name);
             Assert.Equal("Stefan", person.FirstName);
 
             action(person);
@@ -60,7 +59,7 @@ namespace SWE.Expression.Test.Extensions
 
         [Fact]
         [Category("ExpressionExtensions")]
-        public void ToAction_Should_SetValue()
+        public void ToSetAction_Should_SetValue()
         {
             var person = new PersonStub("Stefan", "Wentink");
             var action = ExpressionExtensions.ToSetAction<PersonStub, string>(x => x.FirstName);
@@ -70,6 +69,56 @@ namespace SWE.Expression.Test.Extensions
             Assert.Equal("John", person.FirstName);
 
             action(person, "Dick");
+            Assert.Equal("Dick", person.FirstName);
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
+        public void ToAddAction_ShouldSetValue_With_ValueExpressionClosure()
+        {
+            var person = new PersonStub("Stefan", "Wentink", 12);
+            var age = 3;
+            var action = ExpressionExtensions.ToAddAction<PersonStub, int>(x => x.Age, () => age);
+            Assert.Equal(12, person.Age);
+
+            action(person);
+            Assert.Equal(15, person.Age);
+
+            age = -5;
+            action(person);
+            Assert.Equal(10, person.Age);
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
+        public void ToAddAction_Should_SetValue_With_Value()
+        {
+            var person = new PersonStub("Stefan", "Wentink", 12);
+            var age = 3;
+            var action = ExpressionExtensions.ToAddAction<PersonStub, int>(x => x.Age, age);
+            Assert.Equal(12, person.Age);
+
+            action(person);
+            Assert.Equal(15, person.Age);
+
+            age = -5;
+            action(person);
+            Assert.Equal(18, person.Age);
+        }
+
+        [Fact]
+        [Category("ExpressionExtensions")]
+        public void ToAddAction_Should_SetValue()
+        {
+            var person = new PersonStub("Stefan", "Wentink", 12);
+            var action = ExpressionExtensions.ToAddAction<PersonStub, int>(x => x.Age);
+            Assert.Equal(12, person.Age);
+
+            action(person, 3);
+            Assert.Equal(15, person.Age);
+
+            action(person, -5);
+            Assert.Equal(10, person.Age);
         }
 
         [Fact]

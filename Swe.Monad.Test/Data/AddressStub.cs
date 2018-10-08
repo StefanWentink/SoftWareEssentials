@@ -1,8 +1,6 @@
 ﻿namespace Swe.Monad.Test.Data
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     internal class AddressStub
     {

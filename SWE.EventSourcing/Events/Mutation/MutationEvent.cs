@@ -1,11 +1,12 @@
 ﻿namespace SWE.EventSourcing.Events.Mutation
 {
     using SWE.EventSourcing.Interfaces;
-    using SWE.Collection.Extensions;
-    using System;
+    using SWE.EventSourcing.Interfaces.Events;
     using System.Collections.Generic;
 
-    public class MutationEvent<T> : BasicMutationEvent<T>
+    public class MutationEvent<T>
+        : BasicEvent<T>
+        , IMutationEvent<T>
     {
         public MutationEvent(IPropertyAction<T> propertyAction)
             : base(new List<IPropertyAction<T>> { propertyAction })

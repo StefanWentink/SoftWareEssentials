@@ -2,9 +2,6 @@
 {
     using SWE.Builder.Test.Data;
     using SWE.Xunit.Attributes;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using global::Xunit;
 
     public class BuilderTest

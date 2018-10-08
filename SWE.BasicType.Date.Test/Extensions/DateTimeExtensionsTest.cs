@@ -74,6 +74,21 @@
             Assert.Equal(expectedDestinationDate.Date, dateTimeOffset.Date);
         }
 
+        [Fact]
+        [Category("DateTimeExtensions")]
+        public void GetAge_Should_ReturnAgeInYears()
+        {
+            var expected = 12;
+            var value = new DateTime(2000, 2, 29);
+            var compare = value.AddYears(expected);
+
+            var actual = value.GetAge(compare);
+            Assert.Equal(expected, actual);
+
+            actual = value.GetAge(compare.AddDays(-1));
+            Assert.Equal(expected -1, actual);
+        }
+
         private void AssertDateTimeOffset(
             DateTime dateTime,
             Func<DateTime, DateTimeOffset> function, 

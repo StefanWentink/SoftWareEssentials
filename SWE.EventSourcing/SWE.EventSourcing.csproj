@@ -32,11 +32,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Container\" />
-    <Folder Include="Extensions\" />
+    <PackageReference Include="morelinq" Version="3.0.0" />
+    <PackageReference Include="SWE.BasicType" Version="1.0.1" />
+    <PackageReference Include="SWE.Model" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SWE.BasicType\SWE.BasicType.csproj" />
     <ProjectReference Include="..\SWE.Collection\SWE.Collection.csproj" />
     <ProjectReference Include="..\SWE.Expression\SWE.Expression.csproj" />
     <ProjectReference Include="..\SWE.Reflection\SWE.Reflection.csproj" />

@@ -1,6 +1,5 @@
 ﻿namespace SWE.Builder.Test.Data
 {
-    using SWE.Builder.Interfaces;
     using SWE.Builder.Models;
 
     internal class VehicleBuilder : Builder<VehicleStub, IVehicleStub>

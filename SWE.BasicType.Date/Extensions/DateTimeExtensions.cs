@@ -111,5 +111,23 @@
         {
             return timeZoneInfo.GetAdjustmentRule(referenceDate)?.DaylightDelta ?? TimeSpan.Zero;
         }
+
+        /// <summary>
+        /// Gets the age of <see cref="value"/> compared to <see cref="compare"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="compare"></param>
+        /// <returns></returns>
+        public static int GetAge(this DateTime value, DateTime compare)
+        {
+            var result = compare.Year - value.Year;
+
+            if (compare < value.AddYears(result))
+            {
+                result--;
+            }
+
+            return result;
+        }
     }
 }

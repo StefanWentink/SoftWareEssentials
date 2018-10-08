@@ -4,8 +4,16 @@
 
     public interface IPropertyAction<T>
     {
-        Action<T> GetPreviousValueAction();
+        /// <summary>
+        /// Get action revert.
+        /// </summary>
+        /// <returns></returns>
+        Action<T> GetRevertValueAction();
 
-        Action<T> GetValueAction();
+        /// <summary>
+        /// Get action apply.
+        /// </summary>
+        /// <returns></returns>
+        Action<T> GetApplyValueAction();
     }
 }

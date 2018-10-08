@@ -1,7 +1,5 @@
 ﻿namespace SWE.Expression.Test.Data.Models
 {
-    using System;
-
     internal class ContactPersonStub : PersonStub
     {
         internal int Id { get; set; }
