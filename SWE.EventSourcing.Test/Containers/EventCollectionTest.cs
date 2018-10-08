@@ -156,7 +156,6 @@
             eventCollection.Count.Should().Be(count + 1);
             eventCollection.Contains(item).Should().BeTrue();
 
-
             eventCollection.Remove(item).Should().BeTrue();
             eventCollection.Contains(item).Should().BeFalse();
             eventCollection.Remove(item).Should().BeFalse();

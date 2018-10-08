@@ -33,15 +33,11 @@
 
   <ItemGroup>
     <PackageReference Include="morelinq" Version="3.0.0" />
-    <PackageReference Include="SWE.BasicType" Version="1.0.1" />
+    <PackageReference Include="SWE.BasicType" Version="1.0.2" />
+    <PackageReference Include="SWE.Collection" Version="1.0.2" />
+    <PackageReference Include="SWE.Expression" Version="1.0.2" />
     <PackageReference Include="SWE.Model" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SWE.BasicType\SWE.BasicType.csproj" />
-    <ProjectReference Include="..\SWE.Collection\SWE.Collection.csproj" />
-    <ProjectReference Include="..\SWE.Expression\SWE.Expression.csproj" />
-    <ProjectReference Include="..\SWE.Reflection\SWE.Reflection.csproj" />
+    <PackageReference Include="SWE.Reflection" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

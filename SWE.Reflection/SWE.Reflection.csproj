@@ -30,9 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.Reflection.TypeExtensions">
-      <HintPath>..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.Reflection.TypeExtensions.dll</HintPath>
-    </Reference>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
   </ItemGroup>
 
 </Project>
