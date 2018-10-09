@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    internal class Product : IKey
+    public class Product : IKey
     {
         public Guid Id { get; set; }
 

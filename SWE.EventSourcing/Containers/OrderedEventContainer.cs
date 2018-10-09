@@ -5,40 +5,42 @@
     using System;
     using System.Collections.Generic;
 
-    public class OrderedEventContainer<T, TOrder, TKey> : BasicEventContainer<OrderedEventCollection<T, TOrder>, T, TKey>
+    public class OrderedEventContainer<T, TKey, TEventKey, TOrder>
+        : BasicEventContainer<OrderedEventCollection<T, TEventKey, TOrder>, T, TKey, TEventKey>
         where T : IKey<TKey>
-        where TOrder : IComparable<TOrder>
         where TKey : IEquatable<TKey>
+        where TEventKey : IEquatable<TEventKey>
+        where TOrder : IComparable<TOrder>
     {
         [Obsolete("only for serialisation")]
         public OrderedEventContainer()
-            :base()
+            : base()
         {
         }
 
-        public OrderedEventContainer(TKey key, OrderedEventCollection<T, TOrder> itemEvents)
+        public OrderedEventContainer(TKey key, OrderedEventCollection<T, TEventKey, TOrder> itemEvents)
             : base(key, itemEvents)
         {
         }
 
-        public OrderedEventContainer(IEnumerable<(TKey key, OrderedEventCollection<T, TOrder> itemEvents)> itemEvents)
+        public OrderedEventContainer(IEnumerable<(TKey key, OrderedEventCollection<T, TEventKey, TOrder> itemEvents)> itemEvents)
             : base(itemEvents)
         {
         }
 
-        public OrderedEventContainer(List<KeyValuePair<TKey, OrderedEventCollection<T, TOrder>>> itemEvents)
+        public OrderedEventContainer(List<KeyValuePair<TKey, OrderedEventCollection<T, TEventKey, TOrder>>> itemEvents)
             : base(itemEvents)
         {
         }
 
-        public OrderedEventContainer(Dictionary<TKey, OrderedEventCollection<T, TOrder>> items)
+        public OrderedEventContainer(Dictionary<TKey, OrderedEventCollection<T, TEventKey, TOrder>> items)
             : base(items)
         {
         }
 
         /// <summary>
         /// Apply all <see cref="IEvent{T}"/>
-        /// and all <see cref="IOrderedEvent{TOrder}"/> up to <see cref="orderSelector"/>.
+        /// and all <see cref="IOrderedEvent{TEventKey, TOrder}"/> up to <see cref="orderSelector"/>.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="orderSelector"></param>
@@ -49,7 +51,7 @@
 
         /// <summary>
         /// Apply all <see cref="IEvent{T}"/>
-        /// and all <see cref="IOrderedEvent{TOrder}"/> up to <see cref="order"/>.
+        /// and all <see cref="IOrderedEvent{TEventKey, TOrder}"/> up to <see cref="order"/>.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="order"></param>
@@ -59,19 +61,19 @@
         }
 
         /// <summary>
-        /// Reverts <see cref="IOrderedEvent{TOrder}"/> with the highest <see cref="IOrderedEvent{TOrder}.Order"/>
+        /// Reverts <see cref="IOrderedEvent{TEventKey, TOrder}"/> with the highest <see cref="IOrderedEvent{TEventKey, TOrder}.Order"/>
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="_order"><see cref="IOrderedEvent{TOrder}.Order"/> that is reverted.</param>
+        /// <param name="_order"><see cref="IOrderedEvent{TEventKey, TOrder}.Order"/> that is reverted.</param>
         /// <returns>Number of events reverted.</returns>
         public int TryRevertLast(T value, out TOrder _order)
         {
             return ItemEvents(value).TryRevertLast(value, out _order);
         }
 
-        protected override OrderedEventCollection<T, TOrder> CreateItemEvents()
+        protected override OrderedEventCollection<T, TEventKey, TOrder> CreateItemEvents()
         {
-            return new OrderedEventCollection<T, TOrder>(new List<IEvent<T>>());
+            return new OrderedEventCollection<T, TEventKey, TOrder>(new List<IEvent<T, TEventKey>>());
         }
     }
 }

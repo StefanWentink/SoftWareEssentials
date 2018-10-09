@@ -5,21 +5,22 @@
     using System;
     using System.Collections.Generic;
 
-    public class OrderedChangeEvent<T, TOrder>
-        : BasicEvent<T>
-        , IChangeEvent<T>
-        , IOrderedEvent<TOrder>
+    public class OrderedChangeEvent<T, TKey, TOrder>
+        : BasicEvent<T, TKey>
+        , IChangeEvent<T, TKey>
+        , IOrderedEvent<TKey, TOrder>
+        where TKey : IEquatable<TKey>
         where TOrder : IComparable<TOrder>
     {
         public TOrder Order { get; set; }
 
-        public OrderedChangeEvent(IPropertyAction<T> propertyAction, TOrder order)
-            : this(new List<IPropertyAction<T>> { propertyAction }, order)
+        public OrderedChangeEvent(TKey id, IPropertyAction<T> propertyAction, TOrder order)
+            : this(id, new List<IPropertyAction<T>> { propertyAction }, order)
         {
         }
 
-        public OrderedChangeEvent(IEnumerable<IPropertyAction<T>> propertyActions, TOrder order)
-            : base(propertyActions)
+        public OrderedChangeEvent(TKey id, IEnumerable<IPropertyAction<T>> propertyActions, TOrder order)
+            : base(id, propertyActions)
         {
             Order = order;
         }

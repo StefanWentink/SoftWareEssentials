@@ -13,7 +13,7 @@
     public class ChangeFactoryTest
     {
         [Fact]
-        [Category("PropertyMutation")]
+        [Category("ChangeFactory")]
         public void ToChangeEvent_Should_ReturnChangeForEachItem()
         {
             var product = ProductFactory.GetProduct("0");
@@ -28,9 +28,10 @@
                 product2
             };
 
-            var actual = ChangeFactory.ToChangeEvent<Product, Product, int>(
+            var actual = ChangeFactory.ToChangeEvent<Product, Product, Guid, int>(
                 x => x.Available,
                 15, changes,
+                x => x.Id,
                 x => x.InStock)
             .ToList();
 
@@ -46,7 +47,7 @@
         }
 
         [Fact]
-        [Category("PropertyMutation")]
+        [Category("ChangeFactory")]
         public void ToOrderedChangeEvent_Should_ReturnChangeForEachItem()
         {
             var product = ProductFactory.GetProduct("0");
@@ -54,7 +55,13 @@
 
             var changes = ProductFactory.GetProductPriceChanges(product.Id);
 
-            var actual = ChangeFactory.ToOrderedChangeEvent<Product, ProductPriceChange, double, DateTime>(x => x.Price, 0.8, changes, x => x.Price, x => x.ChangeDate).ToList();
+            var actual = ChangeFactory.ToOrderedChangeEvent<Product, ProductPriceChange, string, double, DateTime>(
+                x => x.Price,
+                0.8,
+                changes,
+                x => x.Id,
+                x => x.Price,
+                x => x.ChangeDate).ToList();
 
             Assert.Equal(changes.Count, actual.Count);
             var change1 = actual[0];

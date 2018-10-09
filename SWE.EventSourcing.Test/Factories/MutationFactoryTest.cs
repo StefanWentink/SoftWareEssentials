@@ -13,7 +13,7 @@
     public class MutationFactoryTest
     {
         [Fact]
-        [Category("PropertyMutation")]
+        [Category("MutationFactory")]
         public void ToMutationEvent_Should_ReturnMutationForEachItem()
         {
             var product = ProductFactory.GetProduct("0");
@@ -28,9 +28,10 @@
                 product2
             };
 
-            var actual = MutationFactory.ToMutationEvent<Product, Product, int>(
+            var actual = MutationFactory.ToMutationEvent<Product, Product, Guid, int>(
                 x => x.Available,
                 mutations,
+                x => x.Id,
                 x => x.InStock)
             .ToList();
 
@@ -46,7 +47,7 @@
         }
 
         [Fact]
-        [Category("PropertyMutation")]
+        [Category("MutationFactory")]
         public void ToOrderedMutationEvent_Should_ReturnMutationForEachItem()
         {
             var product = ProductFactory.GetProduct("0");
@@ -54,7 +55,12 @@
 
             var mutations = ProductFactory.GetProductStockMutations(product.Id);
 
-            var actual = MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, int, DateTimeOffset>(x => x.Available, mutations, x => x.Amount, x => x.OrderDate).ToList();
+            var actual = MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTimeOffset>(
+                x => x.Available,
+                mutations,
+                x => x.Id,
+                x => x.Amount,
+                x => x.OrderDate).ToList();
 
             Assert.Equal(mutations.Count, actual.Count);
             var mutation1 = actual[0];

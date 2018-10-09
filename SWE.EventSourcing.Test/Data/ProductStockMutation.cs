@@ -4,7 +4,7 @@ namespace SWE.EventSourcing.Test.Data
 {
     internal class ProductStockMutation
     {
-        public Guid Id { get; }
+        public string Id { get; }
 
         public Guid ProductId { get; }
 
@@ -18,7 +18,7 @@ namespace SWE.EventSourcing.Test.Data
 
         public ProductStockMutation()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
         }
 
         public ProductStockMutation(

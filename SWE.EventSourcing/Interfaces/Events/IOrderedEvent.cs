@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface IOrderedEvent<TOrder>
+    public interface IOrderedEvent<out TKey, TOrder>
+        where TKey : IEquatable<TKey>
         where TOrder : IComparable<TOrder>
     {
         TOrder Order { get; set; }

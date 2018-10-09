@@ -1,7 +1,10 @@
 ﻿namespace SWE.EventSourcing.Test.Data
 {
+    using SWE.EventSourcing.Factories;
+    using SWE.EventSourcing.Interfaces.Events;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal static class ProductFactory
     {
@@ -30,6 +33,36 @@
                 new ProductStockMutation(productId, 4, new DateTime(2018, 3, 10).ToLocalTime(), new DateTime(2018, 3, 20).ToLocalTime(), MutationType.Order),
                 new ProductStockMutation(productId, 11, new DateTime(2018, 4, 10).ToLocalTime(), new DateTime(2018, 4, 20).ToLocalTime(), MutationType.Order)
             };
+        }
+
+        internal static List<IEvent<Product, string>> GetChanges(Guid itemId)
+        {
+            var priceChanges = ProductFactory.GetProductPriceChanges(itemId).ToList();
+            var stockMutationChanges = ProductFactory.GetProductStockMutations(itemId).ToList();
+
+            var changes = ChangeFactory.ToOrderedChangeEvent<Product, ProductPriceChange, string, double, DateTime>(
+                x => x.Price,
+                0,
+                priceChanges,
+                x => x.Id,
+                x => x.Price,
+                x => x.ChangeDate).Cast<IEvent<Product, string>>().ToList();
+
+            changes.AddRange(MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTimeOffset>(
+                x => x.Available,
+                stockMutationChanges,
+                x => x.Id,
+                x => x.Amount,
+                x => x.OrderDate).Cast<IEvent<Product, string>>());
+
+            changes.AddRange(MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTimeOffset>(
+                x => x.InStock,
+                stockMutationChanges,
+                x => x.Id,
+                x => x.Amount,
+                x => x.DeliveryDate).Cast<IEvent<Product, string>>());
+
+            return changes;
         }
     }
 }

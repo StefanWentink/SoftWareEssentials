@@ -5,38 +5,41 @@
     using System;
     using System.Collections.Generic;
 
-    public class EventContainer<T, TKey> : BasicEventContainer<EventCollection<T>, T, TKey>
+    public class EventContainer<T, TKey, TEventKey>
+        : BasicEventContainer<EventCollection<T, TEventKey>, T, TKey, TEventKey>
+        , IDisposable
         where T : IKey<TKey>
         where TKey : IEquatable<TKey>
+        where TEventKey : IEquatable<TEventKey>
     {
         [Obsolete("only for serialisation")]
         public EventContainer()
         {
         }
 
-        public EventContainer(TKey key, EventCollection<T> itemEvents)
+        public EventContainer(TKey key, EventCollection<T, TEventKey> itemEvents)
             : base(key, itemEvents)
         {
         }
 
-        public EventContainer(IEnumerable<(TKey key, EventCollection<T> itemEvents)> itemEvents)
+        public EventContainer(IEnumerable<(TKey key, EventCollection<T, TEventKey> itemEvents)> itemEvents)
             : base(itemEvents)
         {
         }
 
-        public EventContainer(List<KeyValuePair<TKey, EventCollection<T>>> itemEvents)
+        public EventContainer(List<KeyValuePair<TKey, EventCollection<T, TEventKey>>> itemEvents)
             :base(itemEvents)
         {
         }
 
-        public EventContainer(Dictionary<TKey, EventCollection<T>> items)
+        public EventContainer(Dictionary<TKey, EventCollection<T, TEventKey>> items)
             : base(items)
         {
         }
 
-        protected override EventCollection<T> CreateItemEvents()
+        protected override EventCollection<T, TEventKey> CreateItemEvents()
         {
-            return new EventCollection<T>(new List<IEvent<T>>());
+            return new EventCollection<T, TEventKey>(new List<IEvent<T, TEventKey>>());
         }
     }
 }

@@ -3,9 +3,9 @@
     using SWE.Model.Interfaces;
     using System;
 
-    internal class ProductPriceChange : IKey
+    internal class ProductPriceChange : IKey<string>
     {
-        public Guid Id { get; }
+        public string Id { get; }
 
         public Guid ProductId { get; }
 
@@ -15,7 +15,7 @@
 
         public ProductPriceChange()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
         }
 
         public ProductPriceChange(

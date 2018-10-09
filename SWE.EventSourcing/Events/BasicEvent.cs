@@ -6,22 +6,26 @@
     using System.Collections.Generic;
     using SWE.EventSourcing.Interfaces.Events;
 
-    public abstract class BasicEvent<T> : IEvent<T>
+    public abstract class BasicEvent<T, TKey> : IEvent<T, TKey>
+        where TKey : IEquatable<TKey>
     {
+        public TKey Id { get; set; }
+
         public IEnumerable<IPropertyAction<T>> PropertyActions { get; }
 
-        protected BasicEvent(IPropertyAction<T> propertyAction)
-            : this(new List<IPropertyAction<T>> { propertyAction })
+        protected BasicEvent(TKey id, IPropertyAction<T> propertyAction)
+            : this(id, new List<IPropertyAction<T>> { propertyAction })
         {
         }
 
-        protected BasicEvent(IEnumerable<IPropertyAction<T>> propertyActions)
+        protected BasicEvent(TKey id, IEnumerable<IPropertyAction<T>> propertyActions)
         {
             if (propertyActions.IsNullOrEmpty())
             {
-                throw new ArgumentException($"{nameof(BasicEvent<T>)} needs at least one {nameof(IPropertyAction<T>)}.", nameof(propertyActions));
+                throw new ArgumentException($"{nameof(BasicEvent<T, TKey>)} needs at least one {nameof(IPropertyAction<T>)}.", nameof(propertyActions));
             }
 
+            Id = id;
             PropertyActions = propertyActions;
         }
     }

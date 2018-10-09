@@ -2,19 +2,21 @@
 {
     using SWE.EventSourcing.Interfaces;
     using SWE.EventSourcing.Interfaces.Events;
+    using System;
     using System.Collections.Generic;
 
-    public class MutationEvent<T>
-        : BasicEvent<T>
-        , IMutationEvent<T>
+    public class MutationEvent<T, TKey>
+        : BasicEvent<T, TKey>
+        , IMutationEvent<T, TKey>
+        where TKey : IEquatable<TKey>
     {
-        public MutationEvent(IPropertyAction<T> propertyAction)
-            : base(new List<IPropertyAction<T>> { propertyAction })
+        public MutationEvent(TKey id, IPropertyAction<T> propertyAction)
+            : base(id, new List<IPropertyAction<T>> { propertyAction })
         {
         }
 
-        public MutationEvent(IEnumerable<IPropertyAction<T>> propertyActions)
-            : base(propertyActions)
+        public MutationEvent(TKey id, IEnumerable<IPropertyAction<T>> propertyActions)
+            : base(id, propertyActions)
         {
         }
     }
