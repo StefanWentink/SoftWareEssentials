@@ -8,9 +8,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class EventContainerTest : BasicEventContainerTest<
-        EventContainer<Product, Guid, string>,
-        EventCollection<Product, string>,
+    public class OrderedEventContainerTest : BasicEventContainerTest<
+        OrderedEventContainer<Product, Guid, string, DateTime>,
+        OrderedEventCollection<Product, string, DateTime>,
         Product,
         Guid,
         string>
@@ -34,22 +34,22 @@
             item.Code.Should().Be("old");
         }
 
-        protected internal override EventCollection<Product, string> GetDefaultEventCollection(Guid itemId)
+        protected internal override OrderedEventCollection<Product, string, DateTime> GetDefaultEventCollection(Guid itemId)
         {
             var changes = ProductFactory.GetChanges(itemId);
 
-            var eventCollection = new EventCollection<Product, string>(changes);
+            var eventCollection = new OrderedEventCollection<Product, string, DateTime>(changes);
             eventCollection.Count.Should().Be(changes.Count);
 
             return eventCollection;
         }
 
-        protected internal override EventContainer<Product, Guid, string> GetDefaultEventContainer(IEnumerable<Guid> itemIds)
+        protected internal override OrderedEventContainer<Product, Guid, string, DateTime> GetDefaultEventContainer(IEnumerable<Guid> itemIds)
         {
             var list = itemIds
-                .Select(x => new KeyValuePair<Guid, EventCollection<Product, string>>(x, new EventCollection<Product, string>(new List<IEvent<Product, string>>())))
+                .Select(x => new KeyValuePair<Guid, OrderedEventCollection<Product, string, DateTime>>(x, new OrderedEventCollection<Product, string, DateTime>(new List<IEvent<Product, string>>())))
                 .ToList();
-            return new EventContainer<Product, Guid, string>(list);
+            return new OrderedEventContainer<Product, Guid, string, DateTime>(list);
         }
     }
 }

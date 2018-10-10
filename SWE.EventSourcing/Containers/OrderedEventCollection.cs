@@ -92,7 +92,7 @@
         /// <returns>Wether <see cref="item"/> is applied.</returns>
         public override bool AddAndApply(IEvent<T, TKey> item, T value)
         {
-            Items.Add(item);
+            Add(item);
 
             if (!(item is IOrderedEvent<TKey, TOrder>)
                 || item is IMutationEvent<T, TKey>

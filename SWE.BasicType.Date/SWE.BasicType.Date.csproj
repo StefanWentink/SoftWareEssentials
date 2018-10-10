@@ -3,16 +3,16 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <Description>Utilities and extensions for DateTime and DateTimeOffset.
-Handles daylightsaving issues.
+Handles daylightsaving issues and more.
 Based on NodaTime</Description>
     <PackageTags>daylightsaving datetime</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>

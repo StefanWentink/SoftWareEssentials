@@ -16,7 +16,9 @@
     /// <typeparam name="TKey"><see cref="IKey{TKey}"/> of <see cref="T"/></typeparam>
     /// <typeparam name="TEventKey"><see cref="IKey{TKey}"/> of <see cref="TItemEvents"/></typeparam>
     public abstract class BasicEventContainer<TItemEvents, T, TKey, TEventKey>
-        : IEventSourcingHandler<T, TEventKey>
+        : IBasicEventContainer<TItemEvents, T, TKey, TEventKey>
+        , IEventSourcingHandler<T, TEventKey>
+        , IDisposable
         where TItemEvents : IEventCollection<T, TEventKey>
         where T : IKey<TKey>
         where TKey : IEquatable<TKey>
@@ -65,7 +67,7 @@
 
         public virtual bool Contains(TKey id)
         {
-            return !ItemEventsContainer.ContainsKey(id);
+            return ItemEventsContainer.ContainsKey(id);
         }
 
         public virtual TItemEvents ItemEvents(TKey id)
@@ -83,13 +85,13 @@
         private void AddItemEvents(TKey key, TItemEvents itemEvents)
         {
             SetUpEventHandlers(itemEvents);
-            AddItemEvents(key, itemEvents);
+            ItemEventsContainer.Add(key, itemEvents);
         }
 
         private void SetUpEventHandlers(TItemEvents itemEvents)
         {
-            itemEvents.EventAdded += EventAdded;
-            itemEvents.EventRemoved += EventRemoved;
+            itemEvents.EventAdded += ItemEvents_EventAdded;
+            itemEvents.EventRemoved += ItemEvents_EventRemoved;
         }
 
         /// <summary>
@@ -122,7 +124,7 @@
 
         public virtual void AddAndApply(IEvent<T, TEventKey> item, T value)
         {
-            ItemEvents(value).Add(item);
+            ItemEvents(value).AddAndApply(item, value);
         }
 
         public void Clear(T value)
@@ -153,6 +155,32 @@
         public bool RemoveAndRevert(IEvent<T, TEventKey> item, T value)
         {
             return ItemEvents(value).RemoveAndRevert(item, value);
+        }
+
+        private void ItemEvents_EventRemoved(object sender, EventSourcingArgs<T, TEventKey> e)
+        {
+            if (e.Event != default)
+            {
+                OnEventRemoved(e);
+            }
+        }
+
+        private void ItemEvents_EventAdded(object sender, EventSourcingArgs<T, TEventKey> e)
+        {
+            if (e.Event != default)
+            {
+                OnEventAdded(e);
+            }
+        }
+
+        protected virtual void OnEventRemoved(EventSourcingArgs<T, TEventKey> e)
+        {
+            EventRemoved?.Invoke(this, e);
+        }
+
+        protected virtual void OnEventAdded(EventSourcingArgs<T, TEventKey> e)
+        {
+            EventAdded?.Invoke(this, e);
         }
 
         ~BasicEventContainer()

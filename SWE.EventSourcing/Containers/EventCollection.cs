@@ -69,7 +69,7 @@
         public IEvent<T, TKey> this[int index]
         {
             get { return Items[index]; }
-            set { Items.Insert(index, value); }
+            set { Insert(index, value); }
         }
 
         /// <inheritdoc/>

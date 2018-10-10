@@ -71,6 +71,17 @@
             return ItemEvents(value).TryRevertLast(value, out _order);
         }
 
+        /// <summary>
+        /// Removes and reverts <see cref="IOrderedEvent{TEventKey, TOrder}"/> with the highest <see cref="IOrderedEvent{TEventKey, TOrder}.Order"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="_order"><see cref="IOrderedEvent{TEventKey, TOrder}.Order"/> that is reverted.</param>
+        /// <returns>Number of events reverted.</returns>
+        public int TryRemoveAndRevertLast(T value, out TOrder _order)
+        {
+            return ItemEvents(value).TryRemoveAndRevertLast(value, out _order);
+        }
+
         protected override OrderedEventCollection<T, TEventKey, TOrder> CreateItemEvents()
         {
             return new OrderedEventCollection<T, TEventKey, TOrder>(new List<IEvent<T, TEventKey>>());
