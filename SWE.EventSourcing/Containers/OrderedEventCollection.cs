@@ -18,9 +18,12 @@
         where TKey : IEquatable<TKey>
         where TOrder : IComparable<TOrder>
     {
-        private TOrder MaxOrder => Items.Max(x => (x as IOrderedEvent<TKey, TOrder>).Order);
+        private TOrder MaxOrder => Items
+            .Where(x => x is IOrderedEvent<TKey, TOrder>)
+            .Select(x => (IOrderedEvent<TKey, TOrder>) x)
+            .Max(x => x.Order);
 
-        [Obsolete("only for serialisation")]
+        [Obsolete("only for serialisation", true)]
         public OrderedEventCollection()
         {
         }
@@ -63,7 +66,7 @@
         private void ApplyNonOrdered(T value)
         {
             Items
-                .Where(x => x is IOrderedEvent<TKey, TOrder> orderedEvent)
+                .Where(x => !(x is IOrderedEvent<TKey, TOrder> orderedEvent))
                 .Apply(value);
         }
 
@@ -88,8 +91,9 @@
         {
             Items.Add(item);
 
-            if ((item is IMutationEvent<T, TKey>)
-                 || ((item is IOrderedEvent<TKey, TOrder> orderedEvent) && CompareUtilities.GreaterOrEqualTo(orderedEvent.Order, MaxOrder)))
+            if (!(item is IOrderedEvent<TKey, TOrder>)
+                || item is IMutationEvent<T, TKey>
+                || (item is IOrderedEvent<TKey, TOrder> orderedEvent && CompareUtilities.GreaterOrEqualTo(orderedEvent.Order, MaxOrder)))
             {
                 item.Apply(value);
                 return true;
@@ -116,7 +120,7 @@
                         (x is IOrderedEvent<TKey, TOrder> orderedEvent)
                         && orderedEvent.Order.Equals(maxOrder));
 
-                items.Apply(value);
+                items.Revert(value);
 
                 return items.Count();
             }

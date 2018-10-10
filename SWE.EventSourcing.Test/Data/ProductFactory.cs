@@ -31,7 +31,7 @@
                 new ProductStockMutation(productId, 2, new DateTime(2018, 1, 10).ToLocalTime(), new DateTime(2018, 1, 20).ToLocalTime(), MutationType.Order),
                 new ProductStockMutation(productId, 3, new DateTime(2018, 2, 10).ToLocalTime(), new DateTime(2018, 2, 20).ToLocalTime(), MutationType.Order),
                 new ProductStockMutation(productId, 4, new DateTime(2018, 3, 10).ToLocalTime(), new DateTime(2018, 3, 20).ToLocalTime(), MutationType.Order),
-                new ProductStockMutation(productId, 11, new DateTime(2018, 4, 10).ToLocalTime(), new DateTime(2018, 4, 20).ToLocalTime(), MutationType.Order)
+                new ProductStockMutation(productId, 11, new DateTime(2018, 4, 10).ToLocalTime(), new DateTime(2018, 4, 20).ToLocalTime(), MutationType.Supply)
             };
         }
 
@@ -48,19 +48,18 @@
                 x => x.Price,
                 x => x.ChangeDate).Cast<IEvent<Product, string>>().ToList();
 
-            changes.AddRange(MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTimeOffset>(
+            changes.AddRange(MutationFactory.ToMutationEvent<Product, ProductStockMutation, string, int>(
                 x => x.Available,
                 stockMutationChanges,
                 x => x.Id,
-                x => x.Amount,
-                x => x.OrderDate).Cast<IEvent<Product, string>>());
+                x => x.ApplyableAmount).Cast<IEvent<Product, string>>());
 
-            changes.AddRange(MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTimeOffset>(
+            changes.AddRange(MutationFactory.ToOrderedMutationEvent<Product, ProductStockMutation, string, int, DateTime>(
                 x => x.InStock,
                 stockMutationChanges,
                 x => x.Id,
-                x => x.Amount,
-                x => x.DeliveryDate).Cast<IEvent<Product, string>>());
+                x => x.ApplyableAmount,
+                x => x.DeliveryDate.Date).Cast<IEvent<Product, string>>());
 
             return changes;
         }

@@ -10,11 +10,16 @@ namespace SWE.EventSourcing.Test.Data
 
         public int Amount { get; }
 
+        public int ApplyableAmount =>
+            MutationType == MutationType.Supply
+            ? Amount
+            : Amount * -1;
+
         public DateTimeOffset OrderDate { get; set; }
 
         public DateTimeOffset DeliveryDate { get; set; }
 
-        public MutationType Type { get; set; }
+        public MutationType MutationType { get; set; }
 
         public ProductStockMutation()
         {
@@ -32,7 +37,7 @@ namespace SWE.EventSourcing.Test.Data
             Amount = amount;
             OrderDate = orderDate;
             DeliveryDate = deliveryDate;
-            Type = mutationType;
+            MutationType = mutationType;
         }
     }
 }

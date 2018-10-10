@@ -12,9 +12,9 @@
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentialss</RepositoryUrl>
     <Description>
-      Classes, interfaces and extensions helping set up Eventsourcing 
+      Classes, interfaces and extensions helping set up Eventsourcing.
     </Description>
-    <PackageTags>eventsource eventsourcing</PackageTags>
+    <PackageTags>eventsource eventsourcing eventbased</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>Copyright 2018</Copyright>
   </PropertyGroup>
