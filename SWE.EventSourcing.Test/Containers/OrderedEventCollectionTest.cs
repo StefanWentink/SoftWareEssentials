@@ -49,7 +49,7 @@
         }
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(2017, 1, 1, 1.0, 10)]
         [InlineData(2018, 1, 1, 1.2, 10)]
         [InlineData(2018, 3, 1, 1.2, 5)]
@@ -76,7 +76,7 @@
         }
 
         [Fact]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         public void AddAndApply_Should_ApplyAllEvents_When_Change()
         {
             var item = DefaultItem;
@@ -114,7 +114,7 @@
         }
 
         [Fact]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         public void AddAndApply_Should_ApplyAllEvents_When_Mutation()
         {
             var item = DefaultItem;
@@ -155,7 +155,7 @@
         }
 
         [Fact]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         public void AddAndApply_Should_ApplyAllEvents_When_OrderedNoMutation()
         {
             var item = DefaultItem;
@@ -195,7 +195,9 @@
             item.AssertProduct(1.0, 2, 10);
         }
 
-        public void TryRevertLast_Should_RevertChangesWithMaxOrder_And_ReturnNumberOfEventsRevertedANdTheirOrder()
+        [Fact]
+        [Category("OrderedEventCollection")]
+        public void TryRevertLast_Should_RevertTwoEventWithMaxOrder_And_ReturnNumberOfEventsRevertedAndTheirOrder()
         {
             var item = DefaultItem;
 
@@ -214,7 +216,7 @@
             eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
                 Guid.NewGuid().ToString(),
                 new List<IPropertyAction<Product>> {
-                    new PropertyMutation<Product, int>(2, x => x.Available)
+                    new PropertyMutation<Product, int>(2, x => x.InStock)
                 },
                 highestDate));
 
@@ -223,19 +225,104 @@
                 new List<IPropertyAction<Product>> {
                     new PropertyMutation<Product, int>(3, x => x.Available)
                 },
-                new DateTime(2018, 3, 2)));
+                lowestDate));
 
             var eventCollection = new OrderedEventCollection<Product, string, DateTime>(eventList);
 
             eventCollection.TryRevertLast(item, out var _firstOrder).Should().Be(2);
+            item.AssertProduct(1.0, 9, 8);
+            _firstOrder.Should().Be(highestDate);
+        }
+
+        [Fact]
+        [Category("OrderedEventCollection")]
+        public void TryRevertLast_Should_RevertEventWithMaxOrder_And_ReturnNumberOfEventsRevertedAnditsOrder()
+        {
+            var item = DefaultItem;
+
+            var eventList = new List<IEvent<Product, string>>();
+
+            var highestDate = new DateTime(2018, 3, 3);
+            var lowestDate = new DateTime(2018, 3, 2);
+
+            eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
+                Guid.NewGuid().ToString(),
+                new List<IPropertyAction<Product>> {
+                    new PropertyMutation<Product, int>(1, x => x.Available)
+                },
+                highestDate));
+
+            eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
+                Guid.NewGuid().ToString(),
+                new List<IPropertyAction<Product>> {
+                    new PropertyMutation<Product, int>(3, x => x.Available)
+                },
+                lowestDate));
+
+            var eventCollection = new OrderedEventCollection<Product, string, DateTime>(eventList);
+
+            eventCollection.TryRevertLast(item, out var _firstOrder).Should().Be(1);
+            item.AssertProduct(1.0, 9, 10);
+            _firstOrder.Should().Be(highestDate);
+        }
+
+        [Fact]
+        [Category("OrderedEventCollection")]
+        public void TryRevertLast_Should_RevertNoEvent_When_NoEvents()
+        {
+            var item = DefaultItem;
+
+            var eventCollection = new OrderedEventCollection<Product, string, DateTime>(new List<IEvent<Product, string>>());
+
+            eventCollection.TryRevertLast(item, out var _firstOrder).Should().Be(0);
+            item.AssertProduct(1.0, 10, 10);
+            _firstOrder.Should().Be(default);
+        }
+
+        [Fact]
+        [Category("OrderedEventCollection")]
+        public void TryRemoveAndRevertLast_Should_RemoveAndRevertChangesWithMaxOrder_And_ReturnNumberOfEventsRevertedAndTheirOrder()
+        {
+            var item = DefaultItem;
+
+            var eventList = new List<IEvent<Product, string>>();
+
+            var highestDate = new DateTime(2018, 3, 3);
+            var lowestDate = new DateTime(2018, 3, 2);
+
+            eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
+                Guid.NewGuid().ToString(),
+                new List<IPropertyAction<Product>> {
+                    new PropertyMutation<Product, int>(1, x => x.Available)
+                },
+                highestDate));
+
+            eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
+                Guid.NewGuid().ToString(),
+                new List<IPropertyAction<Product>> {
+                    new PropertyMutation<Product, int>(2, x => x.InStock)
+                },
+                highestDate));
+
+            eventList.Add(new OrderedChangeEvent<Product, string, DateTime>(
+                Guid.NewGuid().ToString(),
+                new List<IPropertyAction<Product>> {
+                    new PropertyMutation<Product, int>(3, x => x.Available)
+                },
+                lowestDate));
+
+            var eventCollection = new OrderedEventCollection<Product, string, DateTime>(eventList);
+
+            eventCollection.TryRemoveAndRevertLast(item, out var _firstOrder).Should().Be(2);
+            item.AssertProduct(1.0, 9, 8);
             _firstOrder.Should().Be(highestDate);
 
+            eventCollection.TryRemoveAndRevertLast(item, out var _secondOrder).Should().Be(1);
+            item.AssertProduct(1.0, 6, 8);
+            _secondOrder.Should().Be(lowestDate);
 
-            eventCollection.TryRevertLast(item, out var _secondOrder).Should().Be(1);
-            _secondOrder.Should().Be(highestDate);
-
-            eventCollection.TryRevertLast(item, out var _thirdOrder).Should().Be(0);
-            _secondOrder.Should().Be(default);
+            eventCollection.TryRemoveAndRevertLast(item, out var _thirdOrder).Should().Be(0);
+            _thirdOrder.Should().Be(default);
         }
     }
 }

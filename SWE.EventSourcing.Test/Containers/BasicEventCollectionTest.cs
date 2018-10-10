@@ -29,7 +29,7 @@
         protected abstract void AssertItemReverted(T item);
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
@@ -58,7 +58,7 @@
         }
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
@@ -87,7 +87,7 @@
         }
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
@@ -120,7 +120,7 @@
         }
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
@@ -153,7 +153,7 @@
         }
 
         [Theory]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(3)]
@@ -187,7 +187,7 @@
         }
 
         [Fact]
-        [Category("EventCollection")]
+        [Category("OrderedEventCollection")]
         public void RemoveAndRevert_Should_RemoveIfPresent_With_EffectingItem()
         {
             var item = DefaultItem;

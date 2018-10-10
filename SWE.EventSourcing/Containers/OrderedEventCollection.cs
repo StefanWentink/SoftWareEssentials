@@ -1,5 +1,6 @@
 ﻿namespace SWE.EventSourcing.Containers
 {
+    using MoreLinq;
     using SWE.BasicType.Utilities;
     using SWE.EventSourcing.Extensions;
     using SWE.EventSourcing.Interfaces.Events;
@@ -19,9 +20,11 @@
         where TOrder : IComparable<TOrder>
     {
         private TOrder MaxOrder => Items
-            .Where(x => x is IOrderedEvent<TKey, TOrder>)
-            .Select(x => (IOrderedEvent<TKey, TOrder>) x)
-            .Max(x => x.Order);
+            .Where(x => x is IOrderedEvent<TKey, TOrder> orderedEvent)
+            .Cast<IOrderedEvent<TKey, TOrder>>()
+            .Select(x => x.Order)
+            .DefaultIfEmpty()
+            .Max();
 
         [Obsolete("only for serialisation", true)]
         public OrderedEventCollection()
@@ -110,6 +113,22 @@
         /// <returns>Number of events reverted.</returns>
         public int TryRevertLast(T value, out TOrder _order)
         {
+            return RevertLast(value, false, out _order);
+        }
+
+        /// <summary>
+        /// Removes and reverts <see cref="IOrderedEvent{TKey, TOrder}"/> with the highest <see cref="IOrderedEvent{TKey, TOrder}.Order"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="_order"><see cref="IOrderedEvent{TKey, TOrder}.Order"/> that is reverted.</param>
+        /// <returns>Number of events reverted.</returns>
+        public int TryRemoveAndRevertLast(T value, out TOrder _order)
+        {
+            return RevertLast(value, true, out _order);
+        }
+
+        private int RevertLast(T value, bool remove, out TOrder _order)
+        {
             var maxOrder = MaxOrder;
             _order = maxOrder;
 
@@ -118,7 +137,12 @@
                 var items = Items
                     .Where(x =>
                         (x is IOrderedEvent<TKey, TOrder> orderedEvent)
-                        && orderedEvent.Order.Equals(maxOrder));
+                        && orderedEvent.Order.Equals(maxOrder)).ToList();
+
+                if (remove)
+                {
+                    return items.Count(x => RemoveAndRevert(x, value));
+                }
 
                 items.Revert(value);
 
