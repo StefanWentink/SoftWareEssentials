@@ -1,12 +1,10 @@
 ﻿namespace SWE.BasicType.Date.Test.Utilities
 {
-    using System;
-    using System.Linq;
-
     using global::Xunit;
-
     using SWE.BasicType.Date.Utilities;
     using SWE.Xunit.Attributes;
+    using System;
+    using System.Linq;
 
     public class TimeZoneInfoUtilitiesTest
     {

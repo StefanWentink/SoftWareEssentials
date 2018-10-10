@@ -1,7 +1,7 @@
 ﻿namespace SWE.Monad.Models
 {
-    using System;
     using Interfaces;
+    using System;
 
     public abstract class Try<T> : Monad<T>, ITry<T>
     {
@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Maps <see cref="T"/> to <see cref="ITry{TResult}"/> by invoking<see cref="mapper"/>  
+        /// Maps <see cref="T"/> to <see cref="ITry{TResult}"/> by invoking<see cref="mapper"/>
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="mapper"></param>

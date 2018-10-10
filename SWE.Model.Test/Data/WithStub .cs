@@ -1,8 +1,7 @@
 ﻿namespace SWE.Model.Test.Data
 {
-    using System;
-
     using SWE.Model.Interfaces;
+    using System;
 
     internal class WithStub : IWith<WithStub>
     {

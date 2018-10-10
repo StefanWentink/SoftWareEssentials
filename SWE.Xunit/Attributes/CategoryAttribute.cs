@@ -1,8 +1,7 @@
 ﻿namespace SWE.Xunit.Attributes
 {
-    using System;
-
     using global::Xunit.Sdk;
+    using System;
 
     /// <summary>
     /// Apply this attribute to your Xunit test method to specify a <see cref="Category"/>.

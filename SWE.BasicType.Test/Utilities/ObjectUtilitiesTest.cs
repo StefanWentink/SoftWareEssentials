@@ -1,12 +1,10 @@
 ﻿namespace SWE.BasicType.Test.Utilities
 {
-    using System;
-
     using global::Xunit;
-
     using SWE.BasicType.Test.Data.Models;
     using SWE.BasicType.Utilities;
     using SWE.Xunit.Attributes;
+    using System;
 
     public class ObjectUtilitiesTest
     {

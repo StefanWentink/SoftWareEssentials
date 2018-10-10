@@ -1,9 +1,9 @@
 ﻿namespace SWE.BasicType.Extensions
 {
+    using SWE.BasicType.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using SWE.BasicType.Utilities;
 
     public static class ExceptionExtensions
     {

@@ -1,12 +1,10 @@
 ﻿namespace SWE.Xunit.Discoverers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     using global::Xunit.Abstractions;
     using global::Xunit.Sdk;
-
     using SWE.Xunit.Attributes;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// This class discovers all of the tests and test classes that have

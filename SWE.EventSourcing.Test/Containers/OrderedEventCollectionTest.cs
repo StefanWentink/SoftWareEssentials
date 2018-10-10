@@ -1,21 +1,18 @@
 ﻿namespace SWE.EventSourcing.Test.Containers
 {
-    using SWE.Xunit.Attributes;
+    using FluentAssertions;
     using global::Xunit;
     using SWE.EventSourcing.Containers;
-    using SWE.EventSourcing.Test.Data;
-    using FluentAssertions;
-    using System.Collections.Generic;
-    using SWE.EventSourcing.Interfaces.Events;
-    using System.Linq;
-    using System;
-    using SWE.EventSourcing.Factories;
-    using SWE.EventSourcing.EventArgs;
-    using SWE.EventSourcing.Test.Extensions;
-    using SWE.EventSourcing.Events.Mutation;
-    using SWE.EventSourcing.Models;
-    using SWE.EventSourcing.Interfaces;
     using SWE.EventSourcing.Events.Change;
+    using SWE.EventSourcing.Events.Mutation;
+    using SWE.EventSourcing.Interfaces;
+    using SWE.EventSourcing.Interfaces.Events;
+    using SWE.EventSourcing.Models;
+    using SWE.EventSourcing.Test.Data;
+    using SWE.EventSourcing.Test.Extensions;
+    using SWE.Xunit.Attributes;
+    using System;
+    using System.Collections.Generic;
 
     public class OrderedOrderedEventCollectionTest : BasicEventCollectionTest<OrderedEventCollection<Product, string, DateTime>, Product, Guid, string>
     {

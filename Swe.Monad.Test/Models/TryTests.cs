@@ -55,7 +55,7 @@
                     .Map(x => x.Number)
                     .GetValue();
 
-                Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]

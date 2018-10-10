@@ -1,15 +1,13 @@
 namespace SWE.Expression.Test.Extensions
 {
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
-
     using global::Xunit;
-
     using SWE.Expression.Extensions;
     using SWE.Expression.Test.Data.Factories;
     using SWE.Expression.Test.Data.Models;
     using SWE.Xunit.Attributes;
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
 
     public class ExpressionExtensionsTest
     {

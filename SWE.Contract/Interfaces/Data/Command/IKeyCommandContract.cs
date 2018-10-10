@@ -1,9 +1,8 @@
 ﻿namespace SWE.Contract.Interfaces.Data.Command
 {
+    using SWE.Model.Interfaces;
     using System;
     using System.Collections.Generic;
-
-    using SWE.Model.Interfaces;
 
     public interface IKeyCommandContract<in T, in TKey> : IBaseCommandContract<T>
         where T : IKey<TKey>

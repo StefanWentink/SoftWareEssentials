@@ -21,8 +21,8 @@
         /// <returns></returns>
         public override Expression Visit(Expression expression)
         {
-            return base.Visit(expression == null || expression == _paramExpression 
-                                  ? _memberExpression 
+            return base.Visit(expression == null || expression == _paramExpression
+                                  ? _memberExpression
                                   : expression);
         }
     }

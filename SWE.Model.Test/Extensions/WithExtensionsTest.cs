@@ -1,11 +1,9 @@
 ﻿namespace SWE.Model.Test.Extensions
 {
-    using System;
-
     using global::Xunit;
-
     using SWE.Model.Extensions;
     using SWE.Model.Test.Data;
+    using System;
 
     public class WithExtensionsTest
     {

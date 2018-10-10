@@ -1,13 +1,13 @@
 ﻿namespace SWE.EventSourcing.Test.Containers
 {
-    using SWE.Xunit.Attributes;
-    using global::Xunit;
     using FluentAssertions;
-    using System.Collections.Generic;
-    using System;
+    using global::Xunit;
     using SWE.EventSourcing.EventArgs;
     using SWE.EventSourcing.Interfaces.Containers;
     using SWE.Model.Interfaces;
+    using SWE.Xunit.Attributes;
+    using System;
+    using System.Collections.Generic;
 
     public abstract class BasicEventContainerTest<TEventContainer, TEventCollection, T, TKey, TEventKey>
         : BasicEventCollectionTest<TEventCollection, T, TKey, TEventKey>

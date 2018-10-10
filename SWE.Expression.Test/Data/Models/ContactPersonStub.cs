@@ -3,7 +3,7 @@
     internal class ContactPersonStub : PersonStub
     {
         internal int Id { get; set; }
-        
+
         internal ContactPersonStub(int id, string firstName, string lastName)
             : base(firstName, lastName)
         {

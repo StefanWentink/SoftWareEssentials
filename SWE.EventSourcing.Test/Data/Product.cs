@@ -2,8 +2,6 @@
 {
     using SWE.Model.Interfaces;
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     public class Product : IKey
     {

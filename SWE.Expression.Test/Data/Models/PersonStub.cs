@@ -1,7 +1,7 @@
 ﻿namespace SWE.Expression.Test.Data.Models
 {
-    using System;
     using SWE.BasicType.Date.Extensions;
+    using System;
 
     internal class PersonStub
     {

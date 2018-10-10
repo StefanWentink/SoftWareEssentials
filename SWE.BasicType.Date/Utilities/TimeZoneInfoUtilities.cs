@@ -1,14 +1,12 @@
 ﻿namespace SWE.BasicType.Date.Utilities
 {
+    using MoreLinq;
+    using NodaTime.TimeZones;
+    using NodaTime.TimeZones.Cldr;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-
-    using MoreLinq;
-
-    using NodaTime.TimeZones;
-    using NodaTime.TimeZones.Cldr;
 
     public static class TimeZoneInfoUtilities
     {

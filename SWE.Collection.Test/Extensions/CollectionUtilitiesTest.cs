@@ -1,8 +1,8 @@
 ﻿namespace SWE.BasicType.Extensions
 {
-    using SWE.Xunit.Attributes;
     using global::Xunit;
     using SWE.Collection.Utilities;
+    using SWE.Xunit.Attributes;
 
     public class CollectionUtilitiesTest
     {

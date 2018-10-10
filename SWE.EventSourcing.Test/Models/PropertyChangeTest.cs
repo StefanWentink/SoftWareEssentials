@@ -1,10 +1,10 @@
 ﻿namespace SWE.EventSourcing.Test.Models
 {
-    using SWE.Xunit.Attributes;
+    using FluentAssertions;
     using global::Xunit;
     using SWE.EventSourcing.Models;
     using SWE.EventSourcing.Test.Data;
-    using FluentAssertions;
+    using SWE.Xunit.Attributes;
 
     public class PropertyChangeTest
     {

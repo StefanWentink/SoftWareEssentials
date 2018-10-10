@@ -1,8 +1,8 @@
 ﻿namespace SWE.Model.Test.Extensions
 {
     using global::Xunit;
-    using SWE.BasicType.Utilities;
     using SWE.BasicType.Test.Data;
+    using SWE.BasicType.Utilities;
     using SWE.Xunit.Attributes;
 
     public class CompareUtilitiesTest
@@ -49,12 +49,12 @@
 
         [Theory]
         [Category("CompareUtilities")]
-        [InlineData(2,          1.9999996, 6, true)]
-        [InlineData(2,          1.9999995, 6, true)]
-        [InlineData(2,          1.9999994, 6, false)]
-        [InlineData(2.0000001,  1.9999996, 6, true)]
-        [InlineData(2.0000001,  1.9999995, 6, false)]
-        [InlineData(2,          1.9999994, 5, true)]
+        [InlineData(2, 1.9999996, 6, true)]
+        [InlineData(2, 1.9999995, 6, true)]
+        [InlineData(2, 1.9999994, 6, false)]
+        [InlineData(2.0000001, 1.9999996, 6, true)]
+        [InlineData(2.0000001, 1.9999995, 6, false)]
+        [InlineData(2, 1.9999994, 5, true)]
         public void EqualsWithinTolerance(double value, double compare, int tolerance, bool expected)
         {
             Assert.Equal(expected, CompareUtilities.EqualsWithinTolerance(value, compare, tolerance));

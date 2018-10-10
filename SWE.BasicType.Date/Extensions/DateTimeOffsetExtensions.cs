@@ -1,8 +1,7 @@
 ﻿namespace SWE.BasicType.Date.Extensions
 {
-    using System;
-
     using SWE.BasicType.Date.Utilities;
+    using System;
 
     public static class DateTimeOffsetExtensions
     {
@@ -17,7 +16,7 @@
         }
 
         /// <summary>
-        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfo.Utc"/> to <see cref="timeZoneInfo"/> 
+        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfo.Utc"/> to <see cref="timeZoneInfo"/>
         /// disregarding it's own offset.
         /// </summary>
         /// <param name="value"></param>
@@ -29,7 +28,7 @@
         }
 
         /// <summary>
-        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfo.Local"/> to <see cref="timeZoneInfo"/> 
+        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfo.Local"/> to <see cref="timeZoneInfo"/>
         /// disregarding it's own offset
         /// </summary>
         /// <param name="value"></param>
@@ -41,7 +40,7 @@
         }
 
         /// <summary>
-        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfoUtilities.DutchTimeZoneInfo"/> to <see cref="timeZoneInfo"/> 
+        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="TimeZoneInfoUtilities.DutchTimeZoneInfo"/> to <see cref="timeZoneInfo"/>
         /// disregarding it's own offset
         /// </summary>
         /// <param name="value"></param>
@@ -53,7 +52,7 @@
         }
 
         /// <summary>
-        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="sourceTimeZone"/> to <see cref="destinationTimeZone"/> 
+        /// Transfers a <see cref="DateTimeOffset"/> from <see cref="sourceTimeZone"/> to <see cref="destinationTimeZone"/>
         /// disregarding it's own offset
         /// </summary>
         /// <param name="value"></param>
@@ -75,7 +74,7 @@
         {
             return value.ToUtcTimeZone().ToTimeZoneFromUtc(timeZoneInfo);
         }
-        
+
         /// <summary>
         /// Set the time of day to 00:00:00.
         /// </summary>
@@ -142,7 +141,7 @@
             var (previous, next) = value.GetDeltaTicks(timeSpan);
 
             return roundUp ?? (next <= previous)
-                       ? (next == 0 ? value : value.AddTicks(next)) 
+                       ? (next == 0 ? value : value.AddTicks(next))
                        : (previous == 0 ? value : value.AddTicks(-previous));
         }
 

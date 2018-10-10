@@ -23,4 +23,4 @@
             DateTimeOffsetProperty = dateTimeOffsetProperty;
         }
     }
-} 
+}

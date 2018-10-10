@@ -1,12 +1,12 @@
 ﻿namespace SWE.BasicType.Extensions
 {
-    using System;
-    using SWE.Xunit.Attributes;
-    using System.Collections.Generic;
     using global::Xunit;
-    using System.Linq;
     using SWE.Collection.Extensions;
     using SWE.Collection.Test.Data;
+    using SWE.Xunit.Attributes;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class CollectionExtensionsTest
     {

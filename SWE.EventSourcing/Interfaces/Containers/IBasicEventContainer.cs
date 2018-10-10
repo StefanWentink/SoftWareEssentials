@@ -1,6 +1,5 @@
 ﻿namespace SWE.EventSourcing.Interfaces.Containers
 {
-    using SWE.EventSourcing.Interfaces.Containers;
     using SWE.EventSourcing.Interfaces.Events;
     using SWE.Model.Interfaces;
     using System;

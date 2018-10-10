@@ -1,10 +1,9 @@
 ﻿namespace SWE.Model.Models
 {
-    using System;
-    using System.Linq.Expressions;
-
     using SWE.Model.Interfaces;
     using SWE.Reflection.Extensions;
+    using System;
+    using System.Linq.Expressions;
 
     public class MutableRangeAdapter<T, TValue> : RangeAdapter<T, TValue>, IRangeWith<MutableRangeAdapter<T, TValue>, TValue>
         where T : IWith<T>

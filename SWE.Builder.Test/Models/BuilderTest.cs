@@ -1,8 +1,8 @@
 ﻿namespace SWE.Builder.Test.Models
 {
+    using global::Xunit;
     using SWE.Builder.Test.Data;
     using SWE.Xunit.Attributes;
-    using global::Xunit;
 
     public class BuilderTest
     {

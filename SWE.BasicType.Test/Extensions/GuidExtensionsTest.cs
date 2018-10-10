@@ -1,11 +1,9 @@
 ﻿namespace SWE.BasicType.Test.Extensions
 {
-    using System;
-
     using global::Xunit;
-
     using SWE.BasicType.Extensions;
     using SWE.Xunit.Attributes;
+    using System;
 
     public class GuidExtensionsTest
     {

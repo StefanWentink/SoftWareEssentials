@@ -1,10 +1,9 @@
 ﻿namespace SWE.BasicType.Date.Extensions
 {
+    using SWE.BasicType.Date.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    using SWE.BasicType.Date.Utilities;
 
     public static class DateTimeExtensions
     {

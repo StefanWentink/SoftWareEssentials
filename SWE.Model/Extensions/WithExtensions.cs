@@ -1,9 +1,8 @@
 ﻿namespace SWE.Model.Extensions
 {
+    using SWE.Model.Interfaces;
     using System;
     using System.Collections.Generic;
-
-    using SWE.Model.Interfaces;
 
     public static class WithExtensions
     {

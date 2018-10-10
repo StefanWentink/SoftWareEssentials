@@ -1,9 +1,9 @@
 ﻿namespace SWE.Model.Extensions
 {
-    using System;
-    using System.Collections.Generic;
     using SWE.BasicType.Utilities;
     using SWE.Model.Interfaces;
+    using System;
+    using System.Collections.Generic;
 
     public static class RangeExtensions
     {

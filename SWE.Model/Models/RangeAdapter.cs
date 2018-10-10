@@ -1,8 +1,7 @@
 ﻿namespace SWE.Model.Models
 {
-    using System;
-
     using SWE.Model.Interfaces;
+    using System;
 
     public class RangeAdapter<T, TValue> : IRangeWith<RangeAdapter<T, TValue>, TValue>
         where T : IWith<T>

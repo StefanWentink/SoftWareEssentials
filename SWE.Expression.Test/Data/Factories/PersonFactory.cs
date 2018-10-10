@@ -1,8 +1,7 @@
 ﻿namespace SWE.Expression.Test.Data.Factories
 {
-    using System.Collections.Generic;
-
     using SWE.Expression.Test.Data.Models;
+    using System.Collections.Generic;
 
     internal static class PersonFactory
     {

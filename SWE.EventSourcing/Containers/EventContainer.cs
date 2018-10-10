@@ -28,7 +28,7 @@
         }
 
         public EventContainer(List<KeyValuePair<TKey, EventCollection<T, TEventKey>>> itemEvents)
-            :base(itemEvents)
+            : base(itemEvents)
         {
         }
 

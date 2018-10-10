@@ -1,10 +1,9 @@
 ﻿namespace SWE.Contract.Interfaces.Data.Command
 {
+    using SWE.Model.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using SWE.Model.Interfaces;
 
     public interface IKeyCommandContractAsync<in T, in TKey> : IBaseCommandContractAsync<T>
         where T : IKey<TKey>

@@ -50,17 +50,16 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, true)]      // in range - overlapping boundary 
+        [InlineData(-2, 10, true)]      // in range - overlapping boundary
         [InlineData(-2, 11, true)]      // in range - fully overlapping - on boundary
         [InlineData(-2, 12, true)]      // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, true)]      // in range - partial overlap 
+        [InlineData(-1, 10, true)]      // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, true)]      // in range - fully overlapping - on boundary
         [InlineData(10, 11, true)]      // in range - partial overlap
         [InlineData(10, 12, true)]      // in range - overlapping boundary
         [InlineData(11, 12, false)]     // out of range - on boundary
         [InlineData(11, 13, false)]     // out of range
-
         [InlineData(12, 13, false)]
         public void OverLaps(int from, int till, bool expected)
         {
@@ -71,10 +70,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, false)]     // in range - overlapping boundary 
+        [InlineData(-2, 10, false)]     // in range - overlapping boundary
         [InlineData(-2, 11, false)]     // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, true)]      // in range - partial overlap 
+        [InlineData(-1, 10, true)]      // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, true)]      // in range - fully overlapping - on boundary
         [InlineData(10, 11, false)]     // in range - partial overlap
@@ -90,10 +89,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, false)]     // in range - overlapping boundary 
+        [InlineData(-2, 10, false)]     // in range - overlapping boundary
         [InlineData(-2, 11, true)]      // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, false)]     // in range - partial overlap 
+        [InlineData(-1, 10, false)]     // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, false)]     // in range - fully overlapping - on boundary
         [InlineData(10, 11, true)]      // in range - partial overlap
@@ -109,10 +108,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, false)]     // in range - overlapping boundary 
+        [InlineData(-2, 10, false)]     // in range - overlapping boundary
         [InlineData(-2, 11, false)]     // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, false)]     // in range - partial overlap 
+        [InlineData(-1, 10, false)]     // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, false)]     // in range - fully overlapping - on boundary
         [InlineData(10, 11, false)]     // in range - partial overlap
@@ -128,10 +127,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, false)]     // in range - overlapping boundary 
+        [InlineData(-2, 10, false)]     // in range - overlapping boundary
         [InlineData(-2, 11, false)]     // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, true)]      // in range - partial overlap 
+        [InlineData(-1, 10, true)]      // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, false)]     // in range - fully overlapping - on boundary
         [InlineData(10, 11, true)]      // in range - partial overlap
@@ -147,10 +146,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, false)]     // in range - overlapping boundary 
+        [InlineData(-2, 10, false)]     // in range - overlapping boundary
         [InlineData(-2, 11, false)]     // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, true)]      // in range - partial overlap 
+        [InlineData(-1, 10, true)]      // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, true)]      // in range - fully overlapping - on boundary
         [InlineData(10, 11, true)]      // in range - partial overlap
@@ -166,10 +165,10 @@
         [Category("RangeExtensions")]
         [InlineData(-3, -2, false)]     // out of range
         [InlineData(-2, -1, false)]     // out of range - on boundary
-        [InlineData(-2, 10, true)]      // in range - overlapping boundary 
+        [InlineData(-2, 10, true)]      // in range - overlapping boundary
         [InlineData(-2, 11, true)]      // in range - fully overlapping - on boundary
         [InlineData(-2, 12, false)]     // in range - fully overlapping - both boundaries
-        [InlineData(-1, 10, true)]      // in range - partial overlap 
+        [InlineData(-1, 10, true)]      // in range - partial overlap
         [InlineData(-1, 11, true)]      // in range - exactly overlapping
         [InlineData(-1, 12, false)]     // in range - fully overlapping - on boundary
         [InlineData(10, 11, true)]      // in range - partial overlap

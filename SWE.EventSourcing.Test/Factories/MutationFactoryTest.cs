@@ -1,14 +1,14 @@
 ﻿namespace SWE.EventSourcing.Test.Factories
 {
-    using SWE.Xunit.Attributes;
+    using FluentAssertions;
     using global::Xunit;
+    using SWE.EventSourcing.Extensions;
     using SWE.EventSourcing.Factories;
     using SWE.EventSourcing.Test.Data;
+    using SWE.Xunit.Attributes;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using SWE.EventSourcing.Extensions;
-    using System;
-    using FluentAssertions;
 
     public class MutationFactoryTest
     {

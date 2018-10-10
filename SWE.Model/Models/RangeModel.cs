@@ -1,8 +1,7 @@
 ﻿namespace SWE.Model.Models
 {
-    using System;
-
     using SWE.Model.Interfaces;
+    using System;
 
     public class RangeModel<TValue> : IRange<TValue>
         where TValue : IComparable<TValue>

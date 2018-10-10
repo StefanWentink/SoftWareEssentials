@@ -17,7 +17,5 @@
         /// <param name="defaultValue"></param>
         /// <returns></returns>
         T GetValueOrDefault(T @default);
-
-
     }
 }

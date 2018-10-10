@@ -1,6 +1,5 @@
 ﻿namespace SWE.EventSourcing.Containers
 {
-    using MoreLinq;
     using SWE.BasicType.Utilities;
     using SWE.EventSourcing.Extensions;
     using SWE.EventSourcing.Interfaces.Events;
@@ -146,7 +145,7 @@
 
                 items.Revert(value);
 
-                return items.Count();
+                return items.Count;
             }
 
             return 0;

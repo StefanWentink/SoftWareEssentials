@@ -1,8 +1,7 @@
 ﻿namespace SWE.BasicType.Extensions
 {
-    using System;
-
     using SWE.BasicType.Utilities;
+    using System;
 
     public static class GuidExtensions
     {

@@ -1,12 +1,11 @@
 namespace SWE.Reflection.Test
 {
-    using System;
-    using System.Linq.Expressions;
-
+    using global::Xunit;
     using SWE.Reflection.Extensions;
     using SWE.Reflection.Test.Data;
     using SWE.Xunit.Attributes;
-    using global::Xunit;
+    using System;
+    using System.Linq.Expressions;
 
     public class ReflectionExtensionsTest
     {

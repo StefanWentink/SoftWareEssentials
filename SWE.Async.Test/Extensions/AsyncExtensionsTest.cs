@@ -1,12 +1,10 @@
 namespace SWE.Async.Test.Extensions
 {
-    using System;
-    using System.Threading.Tasks;
-
     using global::Xunit;
-
     using SWE.Async.Extensions;
     using SWE.Xunit.Attributes;
+    using System;
+    using System.Threading.Tasks;
 
     public class AsyncExtensionsTest
     {

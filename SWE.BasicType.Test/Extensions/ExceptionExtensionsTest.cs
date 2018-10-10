@@ -1,9 +1,9 @@
 ﻿namespace SWE.BasicType.Extensions
 {
-    using System;
-    using System.Linq;
     using global::Xunit;
     using SWE.Xunit.Attributes;
+    using System;
+    using System.Linq;
 
     public class ExceptionExtensionsTest
     {

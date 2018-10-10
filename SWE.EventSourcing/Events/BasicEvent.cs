@@ -1,10 +1,10 @@
 ﻿namespace SWE.EventSourcing.Events
 {
-    using SWE.EventSourcing.Interfaces;
     using SWE.Collection.Extensions;
+    using SWE.EventSourcing.Interfaces;
+    using SWE.EventSourcing.Interfaces.Events;
     using System;
     using System.Collections.Generic;
-    using SWE.EventSourcing.Interfaces.Events;
 
     public abstract class BasicEvent<T, TKey> : IEvent<T, TKey>
         where TKey : IEquatable<TKey>

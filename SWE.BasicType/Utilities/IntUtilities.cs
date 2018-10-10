@@ -5,7 +5,7 @@
     public static class IntUtilities
     {
         /// <summary>
-        /// Get maximum divisable int factor 
+        /// Get maximum divisable int factor
         /// </summary>
         /// <param name="numerator"></param>
         /// <param name="denominator"></param>

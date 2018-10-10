@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Holding a <see cref="Models.Success{T}"/> or <see cref="Models.Failure{T}"/>. 
+    /// Holding a <see cref="Models.Success{T}"/> or <see cref="Models.Failure{T}"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITry<T> : IMonad<T>
@@ -13,7 +13,7 @@
         Exception Exception { get; }
 
         /// <summary>
-        /// Maps <see cref="T"/> to <see cref="ITry{TResult}"/> by invoking<see cref="mapper"/>  
+        /// Maps <see cref="T"/> to <see cref="ITry{TResult}"/> by invoking<see cref="mapper"/>
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="mapper"></param>
@@ -22,7 +22,7 @@
         ITry<TResult> Map<TResult>(Func<T, ITry<TResult>> mapper);
 
         /// <summary>
-        /// Maps <see cref="T"/> to <see cref="TResult"/> by invoking <see cref="mapper"/>  
+        /// Maps <see cref="T"/> to <see cref="TResult"/> by invoking <see cref="mapper"/>
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="mapper"></param>

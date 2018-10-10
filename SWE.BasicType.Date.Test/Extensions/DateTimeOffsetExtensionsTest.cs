@@ -1,10 +1,9 @@
 ﻿namespace SWE.BasicType.Date.Test.Extensions
 {
-    using System;
-
     using global::Xunit;
-    using SWE.Xunit.Attributes;
     using SWE.BasicType.Date.Extensions;
+    using SWE.Xunit.Attributes;
+    using System;
 
     public class DateTimeOffsetExtensionsTest
     {

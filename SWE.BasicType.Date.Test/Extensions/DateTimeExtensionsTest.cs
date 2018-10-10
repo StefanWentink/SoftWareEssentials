@@ -1,12 +1,10 @@
 ﻿namespace SWE.BasicType.Date.Test.Extensions
 {
-    using System;
-
     using global::Xunit;
-
     using SWE.BasicType.Date.Extensions;
     using SWE.BasicType.Date.Utilities;
     using SWE.Xunit.Attributes;
+    using System;
 
     public class DateTimeExtensionsTest
     {
@@ -86,12 +84,12 @@
             Assert.Equal(expected, actual);
 
             actual = value.GetAge(compare.AddDays(-1));
-            Assert.Equal(expected -1, actual);
+            Assert.Equal(expected - 1, actual);
         }
 
         private void AssertDateTimeOffset(
             DateTime dateTime,
-            Func<DateTime, DateTimeOffset> function, 
+            Func<DateTime, DateTimeOffset> function,
             TimeZoneInfo timeZoneInfo,
             bool summerTime)
         {

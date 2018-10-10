@@ -8,7 +8,7 @@
     public interface IKey : IKey<Guid>
     {
     }
-    
+
     /// <summary>
     /// Implements unique identifier <see cref="IKey{TKey}.Id"/> of type <see cref="TKey"/>
     /// </summary>

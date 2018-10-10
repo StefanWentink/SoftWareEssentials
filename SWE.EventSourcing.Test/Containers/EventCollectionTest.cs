@@ -1,9 +1,9 @@
 ﻿namespace SWE.EventSourcing.Test.Containers
 {
-    using SWE.EventSourcing.Containers;
-    using SWE.EventSourcing.Test.Data;
     using FluentAssertions;
+    using SWE.EventSourcing.Containers;
     using SWE.EventSourcing.Interfaces.Events;
+    using SWE.EventSourcing.Test.Data;
     using System;
 
     public class EventCollectionTest : BasicEventCollectionTest<EventCollection<Product, string>, Product, Guid, string>
