@@ -69,7 +69,7 @@
         [Category("ObjectUtilities")]
         public void IsDefault_Should_ReturnTrue_WhenInt()
         {
-            var value = 0;
+            const int value = 0;
             Assert.True(ObjectUtilities.IsDefault(value));
         }
 
@@ -85,7 +85,7 @@
         [Category("ObjectUtilities")]
         public void IsDefault_Should_ReturnTrue_WhenDouble()
         {
-            double value = 0;
+            const double value = 0;
             Assert.True(ObjectUtilities.IsDefault(value));
         }
 
@@ -101,7 +101,7 @@
         [Category("ObjectUtilities")]
         public void IsDefault_Should_ReturnTrue_WhenDecimal()
         {
-            decimal value = 0;
+            const decimal value = 0;
             Assert.True(ObjectUtilities.IsDefault(value));
         }
 
@@ -117,7 +117,7 @@
         [Category("ObjectUtilities")]
         public void IsDefault_Should_ReturnTrue_When_StringNull()
         {
-            string value = null;
+            const string value = null;
             Assert.True(ObjectUtilities.IsDefault(value));
         }
 

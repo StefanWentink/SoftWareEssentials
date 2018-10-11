@@ -11,6 +11,7 @@
     <FileVersion>1.0.2</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Extension on generic collections.
 Calculating Take.
 Splitting in batches.

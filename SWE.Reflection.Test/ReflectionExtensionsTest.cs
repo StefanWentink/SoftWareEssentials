@@ -128,6 +128,30 @@ namespace SWE.Reflection.Test
             AssertSetValueExpression(GetReflectionStub(), x => x.DateTimeOffsetProperty, new DateTimeOffset(2018, 1, 2, 3, 4, 5, TimeSpan.FromHours(5)));
         }
 
+        [Fact]
+        public void IsNullable_Should_ReturnFalse_When_Int()
+        {
+            Assert.False(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.IntProperty)));
+        }
+
+        [Fact]
+        public void IsNullable_Should_ReturnTrue_When_NullableInt()
+        {
+            Assert.True(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.NullableIntProperty)));
+        }
+
+        [Fact]
+        public void IsNullable_Should_ReturnFalse_When_Collection()
+        {
+            Assert.False(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.Reflections)));
+        }
+
+        [Fact]
+        public void IsNullable_Should_ReturnTrue_When_Class()
+        {
+            Assert.True(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.Reflection)));
+        }
+
         private static void AssertSetValueExpression<TValue>(ReflectionStub reflectionStub, Expression<Func<ReflectionStub, TValue>> selectorExpression, TValue expected)
             where TValue : IEquatable<TValue>
         {

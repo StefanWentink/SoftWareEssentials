@@ -17,14 +17,14 @@
             return new ParameterRebinder(map).Visit(exp);
         }
 
-        protected override Expression VisitParameter(ParameterExpression parameterExpression)
+        protected override Expression VisitParameter(ParameterExpression node)
         {
-            if (_map.TryGetValue(parameterExpression, out var replacement))
+            if (_map.TryGetValue(node, out var replacement))
             {
-                parameterExpression = replacement;
+                node = replacement;
             }
 
-            return base.VisitParameter(parameterExpression);
+            return base.VisitParameter(node);
         }
     }
 }

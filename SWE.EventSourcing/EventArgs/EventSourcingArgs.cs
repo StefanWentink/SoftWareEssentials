@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>
-    /// To broadcast <see cref="IEvent<T, TKey>"/> operations.
+    /// To broadcast <see cref="IEvent{T, TKey}"/> operations.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TKey"></typeparam>

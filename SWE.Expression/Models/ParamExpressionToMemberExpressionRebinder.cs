@@ -17,13 +17,13 @@
         /// <summary>
         /// Rebind param expression
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="node"></param>
         /// <returns></returns>
-        public override Expression Visit(Expression expression)
+        public override Expression Visit(Expression node)
         {
-            return base.Visit(expression == null || expression == _paramExpression
+            return base.Visit(node == null || node == _paramExpression
                                   ? _memberExpression
-                                  : expression);
+                                  : node);
         }
     }
 }

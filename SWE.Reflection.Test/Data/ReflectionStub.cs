@@ -1,6 +1,7 @@
 ﻿namespace SWE.Reflection.Test.Data
 {
     using System;
+    using System.Collections.Generic;
 
     internal class ReflectionStub
     {
@@ -13,6 +14,12 @@
         public Guid GuidProperty { get; set; }
 
         public DateTimeOffset DateTimeOffsetProperty { get; set; }
+
+        public int? NullableIntProperty { get; set; }
+
+        public ICollection<ReflectionStub> Reflections { get; set; }
+
+        public ReflectionStub Reflection { get; set; }
 
         public ReflectionStub(int intProperty, double doubleProperty, string stringProperty, Guid guidProperty, DateTimeOffset dateTimeOffsetProperty)
         {

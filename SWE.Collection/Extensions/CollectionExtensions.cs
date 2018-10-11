@@ -94,7 +94,7 @@
                     return true;
                 }
 
-                if (replaceAllMatchingInstances || !replacementIndexes.Any())
+                if (replaceAllMatchingInstances || replacementIndexes.Count == 0)
                 {
                     replacementIndexes.Add(index);
                 }
@@ -109,7 +109,7 @@
                 list.Insert(replacementIndex, value);
             }
 
-            return replacementIndexes.Any();
+            return replacementIndexes.Count > 0;
         }
 
         /// <summary>

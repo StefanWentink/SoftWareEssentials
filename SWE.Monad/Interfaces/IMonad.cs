@@ -14,7 +14,7 @@
         /// <summary>
         /// Gets <see cref="Value"/> if not default or <see cref="@default"/>
         /// </summary>
-        /// <param name="defaultValue"></param>
+        /// <param name="default"></param>
         /// <returns></returns>
         T GetValueOrDefault(T @default);
     }

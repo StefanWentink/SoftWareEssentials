@@ -11,6 +11,7 @@
     <FileVersion>1.0.2</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Utilities and extensions for DateTime and DateTimeOffset.
 Handles daylightsaving issues and more.
 Based on NodaTime</Description>

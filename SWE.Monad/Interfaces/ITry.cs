@@ -41,6 +41,7 @@
         /// <summary>
         /// Recover from <see cref="TException"/> to <see cref="ITry{T}"/>
         /// </summary>
+        /// <typeparam name="TException"></typeparam>
         /// <param name="recover"></param>
         /// <returns></returns>
         ITry<T> Recover<TException>(Func<Exception, T> recover)

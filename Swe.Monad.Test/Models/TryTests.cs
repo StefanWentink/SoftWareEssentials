@@ -70,7 +70,7 @@
                     .Execute(x => x.Addresses.Add(new AddressStub("Some other street", 14, delivery)))
                     .Map(x => x.Addresses.ToList())
                     .Filter(x => x.Any(a => a.Delivery))
-                    .Map(x => x.Count())
+                    .Map(x => x.Count)
                     .GetValue();
 
             Assert.Equal(expected, actual);

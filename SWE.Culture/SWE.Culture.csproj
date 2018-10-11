@@ -3,19 +3,17 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
     <IsPackable>true</IsPackable>
-    <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentialss</RepositoryUrl>
+    <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>
-      Classes, interfaces and extensions helping set up Eventsourcing from even scratch with existing models.
-    </Description>
-    <PackageTags>eventsource eventsourcing eventbased</PackageTags>
+    <Description>Basic cultureInfo code utilities.</Description>
+    <PackageTags>CultureInfo Split Concat</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>Copyright 2018</Copyright>
   </PropertyGroup>
@@ -31,14 +29,4 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="morelinq" Version="3.0.0" />
-    <PackageReference Include="SWE.BasicType" Version="1.0.2" />
-    <PackageReference Include="SWE.Collection" Version="1.0.2" />
-    <PackageReference Include="SWE.Expression" Version="1.0.2" />
-    <PackageReference Include="SWE.Model" Version="1.0.1" />
-    <PackageReference Include="SWE.Reflection" Version="1.0.2" />
-  </ItemGroup>
-
 </Project>

@@ -14,7 +14,7 @@
             var files = GetFiles(folderPath);
             var apiKey = string.Empty;
 
-            if (!files.Any())
+            if (files.Count == 0)
             {
                 return;
             }

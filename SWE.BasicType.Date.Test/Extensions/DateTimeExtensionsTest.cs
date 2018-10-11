@@ -76,7 +76,7 @@
         [Category("DateTimeExtensions")]
         public void GetAge_Should_ReturnAgeInYears()
         {
-            var expected = 12;
+            const int expected = 12;
             var value = new DateTime(2000, 2, 29);
             var compare = value.AddYears(expected);
 

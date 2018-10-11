@@ -16,7 +16,7 @@
         [Category("IntUtilities")]
         public void IsDefault_Should_ReturnFalse(int factor, int denominator, int remainder)
         {
-            var value = factor * denominator + remainder;
+            var value = (factor * denominator) + remainder;
             var actualFactor = IntUtilities.TryIntDivision(value, denominator, out var _actualRemainder);
 
             Assert.Equal(factor, actualFactor);

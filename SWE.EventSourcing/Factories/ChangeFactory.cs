@@ -9,7 +9,6 @@
     public static class ChangeFactory
     {
         public static IEnumerable<ChangeEvent<T, TKey>> ToChangeEventExpression<T, TC, TKey, TValue>(
-            TKey key,
             Expression<Func<T, TValue>> propertySelector,
             TValue defaultValue,
             IEnumerable<TC> changes,

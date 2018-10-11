@@ -11,6 +11,7 @@
     <FileVersion>1.0.1</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Improvements on XUnit.
 Category attribute.</Description>
     <PackageTags>xunit attribute category</PackageTags>

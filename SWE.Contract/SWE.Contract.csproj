@@ -11,6 +11,7 @@
     <FileVersion>1.0.1</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Data contract interfaces.</Description>
     <PackageTags>query command async interfaces</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>

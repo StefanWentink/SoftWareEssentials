@@ -90,17 +90,17 @@
 
             return results.Where(
                 x =>
-                    x.DateStart <= referenceDate.Date &&
-                    x.DateEnd > referenceDate.Date).ToList();
+                    x.DateStart <= referenceDate.Date
+                    && x.DateEnd > referenceDate.Date).ToList();
         }
 
         internal static TimeZoneInfo.AdjustmentRule GetAdjustmentRule(this TimeZoneInfo timeZoneInfo, DateTimeOffset referenceDate)
         {
             var adjustmentRules = timeZoneInfo.GetAdjustmentRules(referenceDate).ToList();
 
-            if (adjustmentRules.Any())
+            if (adjustmentRules.Count > 0)
             {
-                return adjustmentRules.First();
+                return adjustmentRules[0];
             }
 
             return null;

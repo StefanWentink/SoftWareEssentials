@@ -22,8 +22,8 @@
             Assert.Equal(original.GuidProperty, with.GuidProperty);
             Assert.Equal(original.DateTimeOffsetProperty, with.DateTimeOffsetProperty);
 
-            with.IntProperty += 1;
-            with.DoubleProperty += 1;
+            with.IntProperty++;
+            with.DoubleProperty++;
             with.StringProperty = with.StringProperty.ToUpper();
 
             original.GuidProperty = Guid.NewGuid();

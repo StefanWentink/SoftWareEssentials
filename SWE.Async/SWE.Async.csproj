@@ -11,6 +11,7 @@
     <FileVersion>1.0.0</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentialss</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Extensions improving async use.
 Chaining functions.</Description>
     <PackageTags>functional async</PackageTags>
