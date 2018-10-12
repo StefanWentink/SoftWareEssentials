@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
@@ -12,7 +12,13 @@
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Reflection.</Description>
+    <Description>
+Reflection.
+Support for property setters (selectors) and getters (actions).
+Nullable detection.
+Assembly reflection.
+CustomeAttribute reflection.
+    </Description>
     <PackageTags>reflection</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>Copyright 2018</Copyright>

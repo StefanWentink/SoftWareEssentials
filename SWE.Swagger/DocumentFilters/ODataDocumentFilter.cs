@@ -4,9 +4,13 @@
     using Microsoft.AspNetCore.Mvc.Routing;
     using Swashbuckle.AspNetCore.Swagger;
     using Swashbuckle.AspNetCore.SwaggerGen;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using SWE.Reflection.Extensions;
+    using SWE.Reflection.Utilities;
+    using System.Collections.Generic;
+    using System;
+    using SWE.Swagger.Extensions;
 
     /// <summary>
     /// Used in Startup
@@ -39,40 +43,23 @@
         {
             var derivedType = typeof(ODataController);
 
-            foreach (var controllerType in Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t != derivedType && derivedType.IsAssignableFrom(t) && !t.GetTypeInfo().IsAbstract))
+            foreach (var controllerType in Assembly.GetExecutingAssembly().GetAllInstanceTypes(derivedType))
             {
                 var controllerName = controllerType.Name.Replace("Controller", string.Empty);
 
-                foreach (var method in controllerType.GetMethods()
+                foreach (var methodInfo in controllerType.GetMethods()
                     .Where(x =>
-                        x.CustomAttributes.Any(a => typeof(HttpMethodAttribute).IsAssignableFrom(a.AttributeType))
-                        || x.CustomAttributes.Any(a => typeof(EnableQueryAttribute).IsAssignableFrom(a.AttributeType) || typeof(EnableQueryAttribute) == a.AttributeType)))
+                    CustomAttributeUtilities.GetCustomAttribute(x, typeof(HttpMethodAttribute)).Any()
+                    || CustomAttributeUtilities.GetCustomAttribute(x, typeof(EnableQueryAttribute)).Any()))
                 {
-                    var path = $"/{Prefix}/{controllerName}/{method.Name}({string.Join(", ", method.GetParameters().Select(x => $"{x.ParameterType} {x.Name}"))})";
+                    var path = GetPath(Prefix, controllerType, methodInfo);
 
-                    var operation = new Operation
-                    {
-                        Tags = new List<string> { "OData" },
-                        OperationId = $"OData_{controllerName}",
+                    var operation = GetOperation(controllerName);
 
-                        Summary = "Summary about method / data",
-                        Description = "Description / options for the call.",
+                    var schema = context.SchemaRegistry.GetOrRegister(methodInfo.ReturnType);
+                    var security = GetSecurityForOperation(methodInfo);
 
-                        Consumes = new List<string>(),
-                        Produces = new List<string> { "application/atom+xml", "application/json", "text/json", "application/xml", "text/xml" },
-                        Deprecated = false
-                    };
-
-                    var response = new Response() { Description = "OK" };
-                    response.Schema = new Schema { Type = "array", Items = context.SchemaRegistry.GetOrRegister(method.ReturnType) };
-                    operation.Responses = new Dictionary<string, Response> { { "200", response } };
-
-                    var security = GetSecurityForOperation(controllerType);
-                    if (security != null)
-                    {
-                        operation.Security = new List<IDictionary<string, IEnumerable<string>>> { security };
-                    }
+                    operation.SetOperation(schema, security);
 
                     try
                     {
@@ -83,14 +70,19 @@
             }
         }
 
-        private static Dictionary<string, IEnumerable<string>> GetSecurityForOperation(MemberInfo controller)
+        public virtual string GetPath(string prefix, Type controllerType, MethodInfo methodInfo)
         {
-            if (controller.GetCustomAttribute(typeof(Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) != null)
-            {
-                return new Dictionary<string, IEnumerable<string>> { { "oauth2", new[] { "actioncenter" } } };
-            }
+            return SwaggerExtensions.GetPath(prefix, controllerType, methodInfo);
+        }
 
-            return null;
+        public virtual Operation GetOperation(string controllerName)
+        {
+            return SwaggerExtensions.GetOperation(controllerName);
+        }
+
+        public virtual Dictionary<string, IEnumerable<string>> GetSecurityForOperation(MemberInfo memberInfo)
+        {
+            return memberInfo.GetSecurityForOperation();
         }
     }
 }
