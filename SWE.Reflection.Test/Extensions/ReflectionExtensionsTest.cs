@@ -1,4 +1,4 @@
-namespace SWE.Reflection.Test
+namespace SWE.Reflection.Test.Extensions
 {
     using global::Xunit;
     using SWE.Reflection.Extensions;

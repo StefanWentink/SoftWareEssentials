@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.4.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.3" />
     <PackageReference Include="Moq" Version="4.10.0" />
     <PackageReference Include="Microsoft.CodeCoverage" Version="15.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
@@ -33,6 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SWE.Reflection\SWE.Reflection.csproj" />
+    <ProjectReference Include="..\SWE.Swagger\SWE.Swagger.csproj" />
   </ItemGroup>
 </Project>
