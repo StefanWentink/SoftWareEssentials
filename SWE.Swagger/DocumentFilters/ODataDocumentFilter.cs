@@ -10,6 +10,8 @@
     using SWE.Reflection.Utilities;
     using System.Collections.Generic;
     using System;
+    using SWE.BasicType.Extensions;
+    using Microsoft.Extensions.Logging;
     using SWE.Swagger.Extensions;
 
     /// <summary>
@@ -23,10 +25,12 @@
     /// </summary>
     public class ODataDocumentFilter : IDocumentFilter
     {
+        private ILogger Logger { get; }
+
         private string Prefix { get; }
 
-        public ODataDocumentFilter()
-            : this("odata")
+        public ODataDocumentFilter(ILogger<ODataDocumentFilter> logger)
+            : this(logger, "odata")
         {
         }
 
@@ -34,16 +38,17 @@
         /// Initializes a instance of <see cref="ODataDocumentFilter"/>.
         /// </summary>
         /// <param name="prefix">Prefix of api. http(s)://{ip}:{port}/<see cref="prefix"/>/{controller}</param>
-        public ODataDocumentFilter(string prefix)
+        public ODataDocumentFilter(ILogger<ODataDocumentFilter> logger, string prefix)
         {
             Prefix = prefix;
+            Logger = logger;
         }
 
         public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
         {
             var derivedType = typeof(ODataController);
 
-            foreach (var controllerType in Assembly.GetExecutingAssembly().GetAllInstanceTypes(derivedType))
+            foreach (var controllerType in Assembly.GetEntryAssembly().GetAllInstanceTypes(derivedType))
             {
                 var controllerName = controllerType.Name.Replace("Controller", string.Empty);
 
@@ -57,7 +62,7 @@
                     var operation = GetOperation(controllerName);
 
                     var schema = context.SchemaRegistry.GetOrRegister(methodInfo.ReturnType);
-                    var security = GetSecurityForOperation(methodInfo);
+                    var security = methodInfo.GetSecurityForOperation();
 
                     operation.SetOperation(schema, security);
 
@@ -65,7 +70,11 @@
                     {
                         swaggerDoc.Paths.Add(path, new PathItem() { Get = operation });
                     }
-                    catch { }
+                    catch (Exception exception)
+                    {
+                        Logger.LogError(exception, "Failed to add to swaggerDoc.");
+                        Logger.LogError(exception.GetInnerMostException(), "Failed to add to swaggerDoc.");
+                    }
                 }
             }
         }
@@ -78,11 +87,6 @@
         public virtual Operation GetOperation(string controllerName)
         {
             return SwaggerExtensions.GetOperation(controllerName);
-        }
-
-        public virtual Dictionary<string, IEnumerable<string>> GetSecurityForOperation(MemberInfo memberInfo)
-        {
-            return memberInfo.GetSecurityForOperation();
         }
     }
 }
