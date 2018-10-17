@@ -26,7 +26,7 @@
         [Category("EnumUtilities")]
         public void GetValues_Should_ReturnTwo()
         {
-            Assert.Equal(2, EnumUtilities.GetValues<NonEmpty>().Count());
+            Assert.Equal(3, EnumUtilities.GetValues<NonEmpty>().Count());
         }
 
         [Fact]

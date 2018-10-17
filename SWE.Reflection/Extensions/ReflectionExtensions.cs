@@ -95,31 +95,35 @@
         }
 
         /// <summary>
-        /// Determines <see cref="T"/> to be a nullable type.
+        /// Returning <see cref="expression"/> as <see cref="MemberInfo"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="propertyName"></param>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="expression"></param>
         /// <returns></returns>
-        public static bool IsNullable<T>(string propertyName)
+        /// <exception cref="ArgumentNullException">If <see cref="expression"/> is null.</exception>
+        /// <exception cref="ArgumentException">If <see cref="expression"/> lambda not of type <see cref="ExpressionType.Convert"/> or <see cref="ExpressionType.MemberAccess"/>.</exception>
+        public static MemberExpression GetMemberInfo<T, TValue>(this Expression<Func<T, TValue>> expression)
         {
-            var parameter = Expression.Parameter(typeof(T), nameof(T));
-            var property = GetPropertyExpression(parameter, propertyName);
-            var type = property.Type;
-            var typeInfo = type.GetTypeInfo();
-
-            if (typeInfo.IsClass)
+            if (expression == null)
             {
-                return true;
+                throw new ArgumentNullException(nameof(expression));
             }
 
-            return typeInfo.IsValueType
-                && type.IsConstructedGenericType
-                && type.GetGenericTypeDefinition() == typeof(Nullable<>);
-        }
+            if (expression is LambdaExpression lambda)
+            {
+                if (lambda.Body.NodeType == ExpressionType.Convert)
+                {
+                    return ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+                }
 
-        private static Expression GetPropertyExpression(ParameterExpression parameter, string propertyName)
-        {
-            return propertyName.Split('.').Aggregate<string, Expression>(parameter, Expression.Property);
+                if (lambda.Body.NodeType == ExpressionType.MemberAccess)
+                {
+                    return lambda.Body as MemberExpression;
+                }
+            }
+
+            throw new ArgumentException($"{nameof(expression)} could not be cast.", nameof(expression));
         }
     }
 }

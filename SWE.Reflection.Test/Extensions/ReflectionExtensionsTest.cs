@@ -1,5 +1,6 @@
 namespace SWE.Reflection.Test.Extensions
 {
+    using FluentAssertions;
     using global::Xunit;
     using SWE.Reflection.Extensions;
     using SWE.Reflection.Test.Data;
@@ -55,37 +56,45 @@ namespace SWE.Reflection.Test.Extensions
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpression_Should_UseExpressionToSetValue_When_Int()
         {
             AssertValue(GetReflectionStub(), x => x.IntProperty, 32);
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpression_Should_UseExpressionToSetValue_When_Double()
         {
             AssertValue(GetReflectionStub(), x => x.DoubleProperty, 35.4);
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpression_Should_UseExpressionToSetValue_When_String()
         {
             AssertValue(GetReflectionStub(), x => x.StringProperty, "New");
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpression_Should_UseExpressionToSetValue_When_Guid()
         {
             AssertValue(GetReflectionStub(), x => x.GuidProperty, Guid.NewGuid());
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpression_Should_UseExpressionToSetValue_When_DateTimeOffset()
         {
             AssertValue(GetReflectionStub(), x => x.DateTimeOffsetProperty, new DateTimeOffset(2018, 1, 2, 3, 4, 5, TimeSpan.FromHours(5)));
         }
 
-        private static void AssertValue<TValue>(ReflectionStub reflectionStub, Expression<Func<ReflectionStub, TValue>> selectorExpression, TValue expected)
-        where TValue : IEquatable<TValue>
+        private static void AssertValue<TValue>(
+            ReflectionStub reflectionStub,
+            Expression<Func<ReflectionStub, TValue>> selectorExpression,
+            TValue expected)
+            where TValue : IEquatable<TValue>
         {
             var selector = selectorExpression.Compile();
             var original = selector(reflectionStub);
@@ -99,57 +108,70 @@ namespace SWE.Reflection.Test.Extensions
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpressionWithValue_Should_UseExpressionToSetValue_When_Int()
         {
             AssertSetValueExpression(GetReflectionStub(), x => x.IntProperty, 32);
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpressionWithValue_Should_UseExpressionToSetValue_When_Double()
         {
             AssertValue(GetReflectionStub(), x => x.DoubleProperty, 35.4);
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpressionWithValue_Should_UseExpressionToSetValue_When_String()
         {
             AssertSetValueExpression(GetReflectionStub(), x => x.StringProperty, "New");
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpressionWithValue_Should_UseExpressionToSetValue_When_Guid()
         {
             AssertSetValueExpression(GetReflectionStub(), x => x.GuidProperty, Guid.NewGuid());
         }
 
         [Fact]
+        [Category("ReflectionExtensions")]
         public void SetValueExpressionWithValue_Should_UseExpressionToSetValue_When_DateTimeOffset()
         {
             AssertSetValueExpression(GetReflectionStub(), x => x.DateTimeOffsetProperty, new DateTimeOffset(2018, 1, 2, 3, 4, 5, TimeSpan.FromHours(5)));
         }
 
         [Fact]
-        public void IsNullable_Should_ReturnFalse_When_Int()
+        [Category("ReflectionExtensions")]
+        public void GetMemberInfo_Should_ReturnMemberInfo()
         {
-            Assert.False(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.IntProperty)));
+            var actual = ReflectionExtensions.GetMemberInfo<ReflectionStub, int>(x => x.IntProperty);
+            Assert.Equal(nameof(ReflectionStub.IntProperty), actual.Member.Name);
         }
 
         [Fact]
-        public void IsNullable_Should_ReturnTrue_When_NullableInt()
+        [Category("ReflectionExtensions")]
+        public void GetMemberInfo_Should_ReturnMemberInfo_WhenNsted()
         {
-            Assert.True(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.NullableIntProperty)));
+            var actual = ReflectionExtensions.GetMemberInfo<ReflectionStub, int>(x => x.Reflection.IntProperty);
+            Assert.Equal(nameof(ReflectionStub.IntProperty), actual.Member.Name);
         }
 
         [Fact]
-        public void IsNullable_Should_ReturnFalse_When_Collection()
+        [Category("ReflectionExtensions")]
+        public void GetMemberInfo_Should_ThrowArgumentNullException()
         {
-            Assert.False(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.Reflections)));
+            Action action = () => ReflectionExtensions.GetMemberInfo<ReflectionStub, int>(null);
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void IsNullable_Should_ReturnTrue_When_Class()
+        [Category("ReflectionExtensions")]
+        public void GetMemberInfo_Should_ThrowArgumentException()
         {
-            Assert.True(ReflectionExtensions.IsNullable<ReflectionStub>(nameof(ReflectionStub.Reflection)));
+            Action action = () => ReflectionExtensions.GetMemberInfo<ReflectionStub, bool>(x => x.IntProperty == 2);
+            action.Should().Throw<ArgumentException>();
         }
 
         private static void AssertSetValueExpression<TValue>(ReflectionStub reflectionStub, Expression<Func<ReflectionStub, TValue>> selectorExpression, TValue expected)

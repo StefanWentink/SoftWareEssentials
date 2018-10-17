@@ -32,6 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SWE.EventSourcing\SWE.EventSourcing.csproj" />
+    <ProjectReference Include="..\SWE.Polly\SWE.Polly.csproj" />
   </ItemGroup>
 </Project>

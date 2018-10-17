@@ -3,22 +3,17 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
+    <Version>0.0.9</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
-    <AssemblyVersion>1.0.4</AssemblyVersion>
-    <FileVersion>1.0.4</FileVersion>
+    <AssemblyVersion>0.0.9</AssemblyVersion>
+    <FileVersion>0.0.9</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Reflection.
-Support for property setters (selectors) and getters (actions).
-Nullable detection.
-Assembly reflection.
-CustomeAttribute reflection.
-    </Description>
-    <PackageTags>reflection</PackageTags>
+    <Description>Basic setup for OData url building with builder pattern. Make it easier to consume OData.</Description>
+    <PackageTags>http odata client extension</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>Copyright 2018</Copyright>
   </PropertyGroup>
@@ -36,6 +31,20 @@ CustomeAttribute reflection.
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
+    <Compile Remove="Models\Query.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SWE.Builder" Version="1.0.1" />
+    <PackageReference Include="SWE.BasicType" Version="1.0.3" />
+    <PackageReference Include="SWE.Reflection" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SWE.Http\SWE.Http.csproj" />
   </ItemGroup>
 </Project>

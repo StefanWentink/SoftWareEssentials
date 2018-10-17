@@ -32,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SWE.EventSourcing\SWE.EventSourcing.csproj" />
+    <ProjectReference Include="..\SWE.OData\SWE.OData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
