@@ -9,7 +9,7 @@
     public class ODataTypedRepository<T> : TypedRepository<T>
     {
         public ODataTypedRepository(
-            ILogger<ODataTypedRepository<T>> logger,
+            ILogger logger,
             IExchanger exchanger,
             IActions actions,
             ITimeOutPolicy<T> policy)

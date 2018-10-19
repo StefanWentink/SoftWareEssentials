@@ -9,7 +9,7 @@
     public class PollyRetryPolicy : PollyTimeOutPolicy, IPollyPolicy
     {
         public PollyRetryPolicy(
-            ILogger<PollyRetryPolicy> logger,
+            ILogger logger,
             int timeOutMilliseconds,
             int retryMilliseconds,
             int circuitBreakerRetries,

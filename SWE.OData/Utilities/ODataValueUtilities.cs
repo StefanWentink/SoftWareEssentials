@@ -24,7 +24,7 @@
 
             if (!isKey && value is DateTime dateTime)
             {
-                return dateTime.ToLocalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
+                return dateTime.ToLocalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
 
             if (!isKey && value is DateTime?)
@@ -34,7 +34,7 @@
 
             if (!isKey && value is DateTimeOffset dateTimeOffset)
             {
-                return dateTimeOffset.ToString("yyyy-MM-ddThh:mm:ssZ");
+                return dateTimeOffset.ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
 
             if (!isKey && value is DateTimeOffset?)

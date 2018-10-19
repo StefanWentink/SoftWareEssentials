@@ -15,7 +15,7 @@
 
         protected IActions Actions { get; }
 
-        protected BaseRepository(ILogger<BaseRepository> logger, IExchanger exchanger, IActions actions)
+        protected BaseRepository(ILogger logger, IExchanger exchanger, IActions actions)
         {
             Logger = logger;
             Exchanger = exchanger;

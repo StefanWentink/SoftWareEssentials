@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.9</Version>
+    <Version>1.0.3</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
-    <AssemblyVersion>0.0.9</AssemblyVersion>
-    <FileVersion>0.0.9</FileVersion>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -42,9 +42,6 @@
     <PackageReference Include="SWE.Builder" Version="1.0.1" />
     <PackageReference Include="SWE.BasicType" Version="1.0.3" />
     <PackageReference Include="SWE.Reflection" Version="1.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SWE.Http\SWE.Http.csproj" />
+    <PackageReference Include="SWE.Http" Version="1.0.1" />
   </ItemGroup>
 </Project>

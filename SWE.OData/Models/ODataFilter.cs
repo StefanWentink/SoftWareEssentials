@@ -4,10 +4,7 @@
     using SWE.OData.Enums;
     using SWE.OData.Interfaces;
     using SWE.OData.Utilities;
-    using SWE.Reflection.Extensions;
     using SWE.Reflection.Utilities;
-    using System;
-    using System.Linq.Expressions;
     using System.Text;
 
     public class ODataFilter<TValue> : IODataFilter
@@ -44,6 +41,7 @@
                 if (!string.IsNullOrWhiteSpace(Entity))
                 {
                     result.Append(ReflectionUtilities.GetPropertyNameFromPath(Entity).ToLowerInvariant());
+                    result.Append("/");
                 }
 
                 result

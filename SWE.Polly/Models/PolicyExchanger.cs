@@ -17,7 +17,7 @@
         /// <param name="uri"></param>
         /// <param name="cancellationToken"></param>
         /// <param name="token"></param>
-        public PolicyExchanger(ILogger<PolicyExchanger> logger, IUriContainer uri)
+        public PolicyExchanger(ILogger logger, IUriContainer uri)
             : base(logger, uri)
         {
         }

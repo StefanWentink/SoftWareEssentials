@@ -49,5 +49,14 @@
             var actual = ODataValueUtilities.ParameterToString(key, true);
             actual.Should().Be($"{key}");
         }
+
+        [Fact]
+        [Category("ODataValueUtilities")]
+        public void ODataBuilder_Should_ReturnValueAsString_When_DateTime()
+        {
+            var key = new DateTimeOffset(2018, 9, 23, 0, 0, 0, TimeSpan.Zero);
+            var actual = ODataValueUtilities.ParameterToString(key, false);
+            actual.Should().Be("2018-09-23T00:00:00Z");
+        }
     }
 }

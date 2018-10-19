@@ -8,7 +8,7 @@
 
     public class ODataRepository : Repository
     {
-        public ODataRepository(ILogger<Repository> logger, IExchanger exchanger, IActions actions)
+        public ODataRepository(ILogger logger, IExchanger exchanger, IActions actions)
             : base(logger, exchanger, actions)
         {
         }

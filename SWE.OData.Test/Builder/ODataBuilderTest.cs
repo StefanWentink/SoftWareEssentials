@@ -101,6 +101,20 @@
 
         [Fact]
         [Category("ODataBuilder")]
+        public void ODataBuilder_Should_ReturnFilteredQueryWithExpand_With_EntityNameOnFilter()
+        {
+            var filter = new ODataFilterSelector<Relation, string>(x => x.Name, Enums.FilterOperator.Equal, "Johnson", "Person");
+
+            var actual = new ODataBuilder<Relation, Guid>(nameof(Relation))
+                .SetFilter(new ODataFilters(filter))
+                .Expand(new ODataBuilder<Relation, Guid>(nameof(Order)))
+                .Build();
+
+            actual.Should().Be($"relation?$filter=person/name eq 'Johnson'&$expand=order");
+        }
+
+        [Fact]
+        [Category("ODataBuilder")]
         public void ODataBuilder_Should_ReturnFilteredQueryWithExpand_With_Filter()
         {
             var filter = new ODataFilterSelector<Relation, string>(x => x.Name, Enums.FilterOperator.Equal, "Johnson");

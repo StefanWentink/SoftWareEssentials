@@ -23,7 +23,7 @@
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="uri"></param>
-        public Exchanger(ILogger<Exchanger> logger, IUriContainer uriContainer)
+        public Exchanger(ILogger logger, IUriContainer uriContainer)
         {
             Logger = logger;
             UriContainer = uriContainer;

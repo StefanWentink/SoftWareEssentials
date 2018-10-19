@@ -12,7 +12,7 @@
 
     public class Repository : BaseRepository, IRepository
     {
-        public Repository(ILogger<Repository> logger, IExchanger exchanger, IActions actions)
+        public Repository(ILogger logger, IExchanger exchanger, IActions actions)
             : base(logger, exchanger, actions)
         {
         }

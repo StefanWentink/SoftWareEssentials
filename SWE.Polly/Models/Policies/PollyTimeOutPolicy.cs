@@ -12,7 +12,7 @@
 
         protected ILogger Logger { get; }
 
-        public PollyTimeOutPolicy(ILogger<PollyTimeOutPolicy> logger, int milliseconds)
+        public PollyTimeOutPolicy(ILogger logger, int milliseconds)
             : base(milliseconds)
         {
             Logger = logger;

@@ -15,7 +15,7 @@
         protected ITimeOutPolicy<T> Policy { get; }
 
         public TypedRepository(
-            ILogger<TypedRepository<T>> logger,
+            ILogger logger,
             IExchanger exchanger,
             IActions actions,
             ITimeOutPolicy<T> policy)
