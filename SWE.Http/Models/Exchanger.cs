@@ -18,6 +18,8 @@
 
         protected IUriContainer UriContainer { get; private set; }
 
+        protected bool IsDisposed { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Exchanger"/> class.
         /// </summary>
@@ -176,12 +178,17 @@
         /// Disposing class
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool isDisposing)
         {
-            if (disposing)
+            if (!IsDisposed)
             {
-                Logger = null;
-                UriContainer = null;
+                IsDisposed = true;
+
+                if (isDisposing)
+                {
+                    Logger = null;
+                    UriContainer = null;
+                }
             }
         }
     }
