@@ -110,9 +110,19 @@
                 Logger.LogWarning($"Operation cancelled: {operationCanceledException.Message}.");
                 throw;
             }
+            catch (Sytem.InteropServices.COMException exception)
+            {
+                Logger.LogCritical($"Operation cancelled: {exception.Message}.");
+                throw;
+            }
+            catch (HttpRequestException exception)
+            {
+                Logger.LogCritical($"Operation cancelled: {exception.Message}.");
+                throw;
+            }
             catch (Exception exception)
             {
-                Logger.LogError($"Operation cancelled: {exception.Message}.");
+                Logger.LogCritical($"Operation cancelled: {exception.Message}.");
                 throw;
             }
         }
