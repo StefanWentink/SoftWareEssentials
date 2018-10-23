@@ -110,7 +110,7 @@
                 Logger.LogWarning($"Operation cancelled: {operationCanceledException.Message}.");
                 throw;
             }
-            catch (Sytem.InteropServices.COMException exception)
+            catch (System.Runtime.InteropServices.COMException exception)
             {
                 Logger.LogCritical($"Operation cancelled: {exception.Message}.");
                 throw;
