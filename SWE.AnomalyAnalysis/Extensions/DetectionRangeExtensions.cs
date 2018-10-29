@@ -15,7 +15,7 @@
                 return Anomaly.High;
             }
 
-            if (CompareUtilities.SmallerThan(value, range.MaxDetectionHigh))
+            if (CompareUtilities.SmallerThan(value, range.MaxDetectionLow))
             {
                 return Anomaly.Low;
             }

@@ -61,5 +61,7 @@
             string content,
             string route,
             Encoding encoding);
+
+        void SetTimeOut(int milliSeconds);
     }
 }

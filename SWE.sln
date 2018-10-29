@@ -71,7 +71,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE.Http.Test", "SWE.Http.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE.OData.Test", "SWE.OData.Test\SWE.OData.Test.csproj", "{36DA1792-49A0-44DF-A2D6-2B7CFEED46D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE.AnomalyAnalysis", "SWE.AnomalyAnalysis\SWE.AnomalyAnalysis.csproj", "{9B4103B5-572B-4821-A6E4-42DCEE8CFBC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE.AnomalyAnalysis", "SWE.AnomalyAnalysis\SWE.AnomalyAnalysis.csproj", "{9B4103B5-572B-4821-A6E4-42DCEE8CFBC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE.AnomalyAnalysis.Test", "SWE.AnomalyAnalysis.Test\SWE.AnomalyAnalysis.Test.csproj", "{E54D04DE-85C2-428C-A95E-E3D95164E282}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,10 @@ Global
 		{9B4103B5-572B-4821-A6E4-42DCEE8CFBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4103B5-572B-4821-A6E4-42DCEE8CFBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4103B5-572B-4821-A6E4-42DCEE8CFBC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E54D04DE-85C2-428C-A95E-E3D95164E282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54D04DE-85C2-428C-A95E-E3D95164E282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54D04DE-85C2-428C-A95E-E3D95164E282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54D04DE-85C2-428C-A95E-E3D95164E282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

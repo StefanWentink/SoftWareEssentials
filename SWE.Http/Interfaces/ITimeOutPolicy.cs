@@ -2,7 +2,7 @@
 {
     public interface ITimeOutPolicy
     {
-        int TimeOutMilliseconds { get; }
+        int TimeOutMilliseconds { get; set; }
     }
 
     public interface ITimeOutPolicy<T> : ITimeOutPolicy

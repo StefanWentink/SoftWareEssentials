@@ -33,8 +33,8 @@ Range adapter.</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SWE.BasicType" Version="1.0.2" />
-    <PackageReference Include="SWE.Reflection" Version="1.0.2" />
+    <PackageReference Include="SWE.BasicType" Version="1.0.4" />
+    <PackageReference Include="SWE.Reflection" Version="1.0.4" />
   </ItemGroup>
 
 </Project>

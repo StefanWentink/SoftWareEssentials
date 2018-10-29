@@ -17,6 +17,7 @@
         /// </summary>
         /// <param name="preserveCount"></param>
         /// <param name="initialPreserveCount"></param>
+        /// <exception cref="ArgumentException">If <see cref="preserveCount"/> is smaller or equal to 0.</exception>
         public HistorySettings(
            long preserveCount)
             : this(TimeSpan.Zero, preserveCount)
@@ -40,10 +41,16 @@
         /// </summary>
         /// <param name="preserveTimeSpan"></param>
         /// <param name="preserveCount"></param>
-        public HistorySettings(
+        /// <exception cref="ArgumentException">If <see cref="preserveCount"/> is smaller or equal to 0.</exception>
+        private HistorySettings(
             TimeSpan preserveTimeSpan,
             long preserveCount)
         {
+            if (preserveCount < 0)
+            {
+                throw new ArgumentException($"{nameof(preserveCount)} should be greater or equal to 0.");
+            }
+
             PreserveTimeSpan = preserveTimeSpan;
             PreserveCount = preserveCount;
         }

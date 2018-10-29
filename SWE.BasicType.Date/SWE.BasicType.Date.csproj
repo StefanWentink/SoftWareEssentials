@@ -34,7 +34,7 @@ Based on NodaTime</Description>
 
   <ItemGroup>
     <PackageReference Include="morelinq" Version="3.0.0" />
-    <PackageReference Include="NodaTime" Version="2.4.0" />
+    <PackageReference Include="NodaTime" Version="2.4.2" />
   </ItemGroup>
 
 </Project>

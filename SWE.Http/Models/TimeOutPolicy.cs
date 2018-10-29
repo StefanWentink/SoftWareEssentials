@@ -4,7 +4,7 @@ namespace SWE.Http.Models.Policies
 {
     public class TimeOutPolicy : ITimeOutPolicy
     {
-        public int TimeOutMilliseconds { get; }
+        public int TimeOutMilliseconds { get; set; }
 
         public TimeOutPolicy(int milliseconds)
         {

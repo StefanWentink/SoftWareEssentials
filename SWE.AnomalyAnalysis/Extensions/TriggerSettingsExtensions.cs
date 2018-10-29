@@ -12,7 +12,15 @@
             DateTimeOffset nextCalculationDate,
             long count)
         {
-            if (triggerSettings.ApplyCountTrigger && count >= triggerSettings.CountTrigger)
+            if (triggerSettings.ApplyInitialCountTrigger)
+            {
+                if (count >= triggerSettings.InitialCountTrigger)
+                {
+                    triggerSettings.SetInitialTriggerUsed();
+                    return Trigger.Count;
+                }
+            }
+            else if (triggerSettings.ApplyCountTrigger && count >= triggerSettings.CountTrigger)
             {
                 return Trigger.Count;
             }

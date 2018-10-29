@@ -90,6 +90,11 @@
             }
         }
 
+        public void SetTimeOut(int milliSeconds)
+        {
+            Policy.TimeOutMilliseconds = milliSeconds;
+        }
+
         protected virtual List<T> Deserialize(string value)
         {
             return JsonConvert.DeserializeObject<List<T>>(value);

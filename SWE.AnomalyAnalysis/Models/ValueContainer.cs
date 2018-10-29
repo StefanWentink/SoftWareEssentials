@@ -21,6 +21,8 @@
 
         private ITriggerSettings TriggerSettings { get; }
 
+        private IHistorySettings HistorySettings { get; }
+
         private ConcurrentDictionary<DateTimeOffset, TValue> Values { get; } = new ConcurrentDictionary<DateTimeOffset, TValue>();
 
         private ConcurrentBag<TValue> Anomalies { get; } = new ConcurrentBag<TValue>();
@@ -35,7 +37,7 @@
         public ValueContainer(
             ICalculator<TValue> calculator,
             ITriggerSettings triggerSettings)
-            : this(calculator, triggerSettings, null)
+            : this(calculator, triggerSettings, null, null)
         {
         }
 
@@ -43,9 +45,27 @@
             ICalculator<TValue> calculator,
             ITriggerSettings triggerSettings,
             IDetectionRange<TValue> range)
+            : this(calculator, triggerSettings, null, range)
+        {
+        }
+
+        public ValueContainer(
+            ICalculator<TValue> calculator,
+            ITriggerSettings triggerSettings,
+            IHistorySettings historySettings)
+            : this(calculator, triggerSettings, historySettings, null)
+        {
+        }
+
+        public ValueContainer(
+            ICalculator<TValue> calculator,
+            ITriggerSettings triggerSettings,
+            IHistorySettings historySettings,
+            IDetectionRange<TValue> range)
         {
             Calculator = calculator;
             TriggerSettings = triggerSettings;
+            HistorySettings = historySettings ?? new HistorySettings(0);
             Range = range;
             SetCalculationDate(DateTimeOffset.Now);
         }
@@ -65,6 +85,7 @@
 
                 if (addResult.trigger != Trigger.None)
                 {
+                    var referenceDate = DateTimeOffset.Now;
                     var calculationResult = Calculator.Calculate(Values.Values, Anomalies);
 
                     if (!CompareUtilities.Equals(calculationResult.Normal, Range.Normal))
@@ -73,7 +94,8 @@
                     }
 
                     Range = calculationResult;
-                    SetCalculationDate(DateTimeOffset.Now);
+                    SetCalculationDate(referenceDate);
+                    HistorySettings.ReduceValues(Values, Anomalies, referenceDate);
                 }
             }
             finally
@@ -94,6 +116,7 @@
                 return (anomaly, TriggerSettings.DetermineTrigger(referenceDate, NextCalculationDate, Values.Count));
             }
 
+            Anomalies.Add(value);
             return (anomaly, TriggerSettings.DetermineAnomalyTrigger(Anomalies.Count));
         }
 

@@ -5,13 +5,16 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Calculates an <see cref="IDetectionRange{TValue}"/> based on the standard deviation.
+    /// </summary>
     public class StandardDeviationCalculator : ICalculator<double>
     {
         private double Factor { get; }
 
-        public StandardDeviationCalculator(double rangeFactor)
+        public StandardDeviationCalculator(double validStandardDeviationFactor)
         {
-            Factor = rangeFactor;
+            Factor = validStandardDeviationFactor;
         }
 
         public IDetectionRange<double> Calculate(IEnumerable<double> values, IEnumerable<double> anomalies)

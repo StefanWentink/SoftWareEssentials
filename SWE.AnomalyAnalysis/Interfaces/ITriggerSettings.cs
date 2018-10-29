@@ -34,5 +34,10 @@
         /// (Re)calculate after <see cref="TimeSpanTrigger"/> <see cref="TimeSpan"/>.
         /// </summary>
         TimeSpan TimeSpanTrigger { get; }
+
+        /// <summary>
+        /// Use of initial trigger registered
+        /// </summary>
+        void SetInitialTriggerUsed();
     }
 }
