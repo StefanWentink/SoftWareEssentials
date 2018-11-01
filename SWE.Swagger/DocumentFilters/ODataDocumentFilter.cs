@@ -8,7 +8,6 @@
     using System.Reflection;
     using SWE.Reflection.Extensions;
     using SWE.Reflection.Utilities;
-    using System.Collections.Generic;
     using System;
     using SWE.BasicType.Extensions;
     using Microsoft.Extensions.Logging;

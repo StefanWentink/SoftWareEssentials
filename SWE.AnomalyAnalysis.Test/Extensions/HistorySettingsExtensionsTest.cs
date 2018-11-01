@@ -5,7 +5,6 @@
     using SWE.AnomalyAnalysis.Models;
     using SWE.AnomalyAnalysis.Extensions;
     using FluentAssertions;
-    using SWE.AnomalyAnalysis.Enums;
     using System.Collections.Concurrent;
     using System;
     using System.Collections.Generic;

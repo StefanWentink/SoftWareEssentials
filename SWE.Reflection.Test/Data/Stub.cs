@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using System;
-    using System.Reflection;
 
     public class Stub : AbstractStub
     {

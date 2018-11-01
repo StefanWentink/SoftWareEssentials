@@ -1,8 +1,6 @@
 ﻿namespace SWE.OData.Test.Data
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     internal class OrderLine
     {

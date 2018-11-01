@@ -1,8 +1,5 @@
 ﻿namespace SWE.Swagger.Test.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using SWE.Xunit.Attributes;
     using global::Xunit;
     using SWE.Swagger.Extensions;

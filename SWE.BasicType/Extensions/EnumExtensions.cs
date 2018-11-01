@@ -1,11 +1,8 @@
 ﻿namespace SWE.BasicType.Extensions
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
-    using System.Reflection;
-    using System.Text;
 
     public static class EnumExtensions
     {

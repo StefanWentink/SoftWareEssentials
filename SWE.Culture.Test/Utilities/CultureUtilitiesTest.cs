@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SWE.Culture.Test.Utilities
+﻿namespace SWE.Culture.Test.Utilities
 {
     using FluentAssertions;
     using global::Xunit;

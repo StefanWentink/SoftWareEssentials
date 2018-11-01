@@ -1,9 +1,5 @@
 ﻿namespace SWE.BasicType.Utilities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public static class TypeUtilities
     {
         public static T? ToNullableTypeOrNull<T>(object value)

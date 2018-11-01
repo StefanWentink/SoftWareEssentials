@@ -1,13 +1,9 @@
 namespace SWE.Reflection.Test.Extensions
 {
-    using FluentAssertions;
     using global::Xunit;
-    using SWE.Reflection.Extensions;
     using SWE.Reflection.Test.Data;
     using SWE.Reflection.Utilities;
     using SWE.Xunit.Attributes;
-    using System;
-    using System.Linq.Expressions;
 
     public class ReflectionUtilitiesTest
     {

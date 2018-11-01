@@ -3,18 +3,20 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Stefan Wentink</Authors>
     <Company>SWE</Company>
     <PreBuildEvent></PreBuildEvent>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
     <IsPackable>true</IsPackable>
     <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Utilities and extensions for DateTime and DateTimeOffset.
-Handles daylightsaving issues and more.
-Based on NodaTime</Description>
+    <Description>
+      Utilities and extensions for DateTime and DateTimeOffset.
+      Handles daylightsaving issues and more.
+      Based on NodaTime
+    </Description>
     <PackageTags>daylightsaving datetime</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>Copyright 2018</Copyright>
@@ -36,5 +38,4 @@ Based on NodaTime</Description>
     <PackageReference Include="morelinq" Version="3.0.0" />
     <PackageReference Include="NodaTime" Version="2.4.2" />
   </ItemGroup>
-
 </Project>

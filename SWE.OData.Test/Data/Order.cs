@@ -1,6 +1,5 @@
 ﻿namespace SWE.OData.Test.Data
 {
-    using System;
     using System.Collections.Generic;
 
     internal class Order
