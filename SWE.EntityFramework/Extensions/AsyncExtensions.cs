@@ -46,6 +46,24 @@
         }
 
         /// <summary>
+        /// Handle <see cref="Queryable.SingleOrDefault"/> on any <see cref="IQueryable"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">If <see cref="query"/> is null.</exception>
+        public static Task<T> SingleOrDefaultAsyncSafe<T>(
+            this IQueryable<T> query,
+            CancellationToken cancellationToken = default)
+        {
+            return query.ResolveSafe(
+                Queryable.SingleOrDefault,
+                EntityFrameworkQueryableExtensions.SingleOrDefaultAsync,
+                cancellationToken);
+        }
+
+        /// <summary>
         /// Handle <see cref="Queryable.FirstOrDefault"/> on any <see cref="IQueryable"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>

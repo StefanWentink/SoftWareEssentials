@@ -7,6 +7,7 @@ namespace SWE.EntityFramework.Test
     using System.Linq;
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
 
     public class AsyncExtensionsTest
     {
@@ -14,12 +15,12 @@ namespace SWE.EntityFramework.Test
 
         [Fact]
         [Category("AsyncExtensions")]
-        public async System.Threading.Tasks.Task ToArrayAsyncSafe_Should_ResolveAsync()
+        public async Task ToArrayAsyncSafe_Should_ResolveAsync()
         {
             (await list
-                .AsQueryable()
-                .ToArrayAsyncSafe()
-                .ConfigureAwait(false))
+                    .AsQueryable()
+                    .ToArrayAsyncSafe()
+                    .ConfigureAwait(false))
                 .Count()
                 .Should()
                 .Be(list.Count);
@@ -27,12 +28,12 @@ namespace SWE.EntityFramework.Test
 
         [Fact]
         [Category("AsyncExtensions")]
-        public async System.Threading.Tasks.Task ToListAsyncSafe_Should_ResolveAsync()
+        public async Task ToListAsyncSafe_Should_ResolveAsync()
         {
             (await list
-                .AsQueryable()
-                .ToListAsyncSafe()
-                .ConfigureAwait(false))
+                    .AsQueryable()
+                    .ToListAsyncSafe()
+                    .ConfigureAwait(false))
                 .Count()
                 .Should()
                 .Be(list.Count);
@@ -40,26 +41,39 @@ namespace SWE.EntityFramework.Test
 
         [Fact]
         [Category("AsyncExtensions")]
-        public async System.Threading.Tasks.Task FirstOrDefaultAsyncSafe_Should_ResolveAsync()
+        public async Task SingleOrDefaultAsyncSafe_Should_ResolveAsync()
+        {
+            (await list
+                    .Where(x => x == "2")
+                    .AsQueryable()
+                    .SingleOrDefaultAsyncSafe()
+                    .ConfigureAwait(false))
+                .Should()
+                .Be("1");
+        }
+
+        [Fact]
+        [Category("AsyncExtensions")]
+        public async Task FirstOrDefaultAsyncSafe_Should_ResolveAsync()
         {
             (await list
                    .AsQueryable()
                    .FirstOrDefaultAsyncSafe()
                    .ConfigureAwait(false))
-                   .Should()
-                   .Be("1");
+                .Should()
+                .Be("1");
         }
 
         [Fact]
         [Category("AsyncExtensions")]
-        public async System.Threading.Tasks.Task LastOrDefaultAsyncSafe_Should_ResolveAsync()
+        public async Task LastOrDefaultAsyncSafe_Should_ResolveAsync()
         {
             (await list
                    .AsQueryable()
                    .LastOrDefaultAsyncSafe()
                    .ConfigureAwait(false))
-                   .Should()
-                   .Be("3");
+                .Should()
+                .Be("3");
         }
 
         [Fact]
