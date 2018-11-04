@@ -20,8 +20,9 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
   <ItemGroup>
-	<PackageReference Include="FluentAssertions" Version="5.4.2" />
+    <PackageReference Include="FluentAssertions" Version="5.4.2" />
     <PackageReference Include="Moq" Version="4.10.0" />
     <PackageReference Include="Microsoft.CodeCoverage" Version="15.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
@@ -36,5 +37,4 @@
   <ItemGroup>
     <ProjectReference Include="..\SWE.BasicType\SWE.BasicType.csproj" />
   </ItemGroup>
-
 </Project>

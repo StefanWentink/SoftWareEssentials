@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Authors>Stefan Wentink</Authors>
+    <Company>SWE</Company>
+    <PreBuildEvent></PreBuildEvent>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <IsPackable>true</IsPackable>
+    <RepositoryUrl>https://github.com/StefanWentink/SoftWareEssentials</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>
+      EntityFramework extensions.
+      Handling async on queryables
+    </Description>
+    <PackageTags>EntityFramework Async</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Copyright>Copyright 2018</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+  </ItemGroup>
+</Project>
