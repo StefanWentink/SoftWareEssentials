@@ -44,12 +44,24 @@ namespace SWE.EntityFramework.Test
         public async Task SingleOrDefaultAsyncSafe_Should_ResolveAsync()
         {
             (await list
-                    .Where(x => x == "2")
                     .AsQueryable()
+                    .Where(x => x == "2")
                     .SingleOrDefaultAsyncSafe()
                     .ConfigureAwait(false))
                 .Should()
-                .Be("1");
+                .Be("2");
+        }
+
+        [Fact]
+        [Category("AsyncExtensions")]
+        public async Task SingleOrDefaultAsyncSafe_Should_ResolveAsync_With_Predicate()
+        {
+            (await list
+                    .AsQueryable()
+                    .SingleOrDefaultAsyncSafe(x => x == "2")
+                    .ConfigureAwait(false))
+                .Should()
+                .Be("2");
         }
 
         [Fact]
@@ -66,6 +78,18 @@ namespace SWE.EntityFramework.Test
 
         [Fact]
         [Category("AsyncExtensions")]
+        public async Task FirstOrDefaultAsyncSafe_Should_ResolveAsync_With_Predicate()
+        {
+            (await list
+                   .AsQueryable()
+                   .FirstOrDefaultAsyncSafe(x => x != "1")
+                   .ConfigureAwait(false))
+                .Should()
+                .Be("2");
+        }
+
+        [Fact]
+        [Category("AsyncExtensions")]
         public async Task LastOrDefaultAsyncSafe_Should_ResolveAsync()
         {
             (await list
@@ -74,6 +98,18 @@ namespace SWE.EntityFramework.Test
                    .ConfigureAwait(false))
                 .Should()
                 .Be("3");
+        }
+
+        [Fact]
+        [Category("AsyncExtensions")]
+        public async Task LastOrDefaultAsyncSafe_Should_ResolveAsync_With_Predicate()
+        {
+            (await list
+                   .AsQueryable()
+                   .LastOrDefaultAsyncSafe(x => x != "3")
+                   .ConfigureAwait(false))
+                .Should()
+                .Be("2");
         }
 
         [Fact]
