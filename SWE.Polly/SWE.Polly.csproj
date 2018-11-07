@@ -32,6 +32,6 @@
 
   <ItemGroup>
     <PackageReference Include="Polly" Version="6.1.0" />
-    <PackageReference Include="SWE.Http" Version="1.0.2" />
+    <PackageReference Include="SWE.Http" Version="1.0.3" />
   </ItemGroup>
 </Project>

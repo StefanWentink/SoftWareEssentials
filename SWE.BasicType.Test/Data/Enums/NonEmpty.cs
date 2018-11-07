@@ -4,6 +4,8 @@ namespace SWE.BasicType.Test.Data.Enums
 {
     public enum NonEmpty
     {
+        Unknown = 0,
+
         [Description("one")]
         FirstValue = 1,
 
