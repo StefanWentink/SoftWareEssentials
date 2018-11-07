@@ -32,8 +32,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.0" />
-    <PackageReference Include="SWE.BasicType" Version="1.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="SWE.BasicType" Version="1.0.5" />
     <PackageReference Include="SWE.Reflection" Version="1.0.4" />
   </ItemGroup>
 </Project>
