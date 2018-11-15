@@ -9,7 +9,7 @@
 
     public class DetectionRangeExtensionsTest
     {
-        private DetectionRange<double> Range = new DetectionRange<double>(1, 2, 3, 4, 5);
+        private readonly DetectionRange<double> Range = new DetectionRange<double>(1, 2, 3, 4, 5);
 
         [Theory]
         [Category("DetectionRangeExtensions")]

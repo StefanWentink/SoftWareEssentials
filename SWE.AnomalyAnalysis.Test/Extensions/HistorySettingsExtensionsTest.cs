@@ -73,7 +73,7 @@
             var referenceDate = new DateTimeOffset(2018, 1, 5, 0, 0, 1, TimeSpan.Zero).AddDays(-preserve);
             var reductionResult = settings.ReduceValues(values, anomalies, referenceDate);
 
-            var expected = CompareUtilities.Min(count, CompareUtilities.Max(0, 2 * (4 - preserve) + anomalies.Count));
+            var expected = CompareUtilities.Min(count, CompareUtilities.Max(0, (2 * (4 - preserve)) + anomalies.Count));
             reductionResult.Should().Be(expected);
             values.Count.Should().Be(count - expected);
             anomalies.Count.Should().Be(0);

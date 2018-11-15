@@ -54,12 +54,12 @@
             double standardDeviationFactor,
             double standardDeviationPercentageThresHold)
         {
-            var lowerBound = average - standardDeviation * standardDeviationFactor;
-            var upperBound = average + standardDeviation * standardDeviationFactor;
+            var lowerBound = average - (standardDeviation * standardDeviationFactor);
+            var upperBound = average + (standardDeviation * standardDeviationFactor);
             var countBetweenBoundaries = valueList.Count(
                 x =>
-                    CompareUtilities.GreaterOrEqualTo(x, lowerBound) &&
-                    CompareUtilities.SmallerOrEqualTo(x, upperBound));
+                    CompareUtilities.GreaterOrEqualTo(x, lowerBound)
+                    && CompareUtilities.SmallerOrEqualTo(x, upperBound));
             var percentageBetweenBoundaries = (double)countBetweenBoundaries / count * 100;
             return percentageBetweenBoundaries >= standardDeviationPercentageThresHold;
         }
