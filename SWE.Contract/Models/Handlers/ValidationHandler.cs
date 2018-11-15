@@ -12,7 +12,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationHandler"/> class.
         /// </summary>
-        /// <param name="validCondition"></param>
+        /// <param name="validCondition">Function determining valid state.</param>
+        /// <param name="messageFunction"></param>
         /// <exception cref="ArgumentNullException">If <see cref="validCondition"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If <see cref="messageFunction"/> is null.</exception>
         public ValidationHandler(Func<T, bool> validCondition, Func<T, string> messageFunction)

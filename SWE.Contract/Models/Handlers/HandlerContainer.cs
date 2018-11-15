@@ -23,7 +23,7 @@
         {
             Handlers = handlers ?? new List<IHandler<T>>();
 
-            foreach (IValidationResultHandler<T> handler in Handlers/*.Where(x => x is IValidationResultHandler<T>)*/)
+            foreach (IValidationResultHandler<T> handler in Handlers.Where(x => x is IValidationResultHandler<T>))
             {
                 handler.InvalidResult += OnInvalidResult_Raised;
             }
