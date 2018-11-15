@@ -99,8 +99,8 @@
             {
                 foreach (var attribute in fieldInfo.GetCustomAttributes(false))
                 {
-                    if (attribute is DescriptionAttribute descriptionAttribute &&
-                        descriptionAttribute.Description == value)
+                    if (attribute is DescriptionAttribute descriptionAttribute
+                        && descriptionAttribute.Description == value)
                     {
                         return (TEnum)Enum.Parse(typeof(TEnum), fieldInfo.Name);
                     }
