@@ -13,7 +13,7 @@
     public class ValueContainer<TValue> : IValueContainer<TValue>
         where TValue : IComparable<TValue>
     {
-        private static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private IDetectionRange<TValue> Range { get; set; }
 
@@ -72,25 +72,25 @@
 
         public async Task AddAsync(TValue value)
         {
-            await semaphoreSlim.WaitAsync();
+            await semaphoreSlim.WaitAsync().ConfigureAwait(false);
 
             try
             {
-                var addResult = await AddValue(value).ConfigureAwait(false);
+                var (anomaly, trigger) = await AddValue(value).ConfigureAwait(false);
 
-                if (addResult.anomaly != Anomaly.None)
+                if (anomaly != Anomaly.None)
                 {
-                    OnAnomalyEvent(value, addResult.anomaly);
+                    OnAnomalyEvent(value, anomaly);
                 }
 
-                if (addResult.trigger != Trigger.None)
+                if (trigger != Trigger.None)
                 {
                     var referenceDate = DateTimeOffset.Now;
                     var calculationResult = Calculator.Calculate(Values.Values, Anomalies);
 
                     if (!CompareUtilities.Equals(calculationResult.Normal, Range.Normal))
                     {
-                        OnValueChangedEvent(calculationResult.Normal, addResult.trigger);
+                        OnValueChangedEvent(calculationResult.Normal, trigger);
                     }
 
                     Range = calculationResult;
@@ -129,7 +129,7 @@
                 {
                     referenceDate = DateTimeOffset.Now;
                 }
-            });
+            }).ConfigureAwait(false);
 
             return referenceDate;
         }

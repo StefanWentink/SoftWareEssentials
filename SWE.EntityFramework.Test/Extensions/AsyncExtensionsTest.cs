@@ -11,7 +11,7 @@ namespace SWE.EntityFramework.Test
 
     public class AsyncExtensionsTest
     {
-        private List<string> list = new List<string> { "1", "2", "3" };
+        private readonly List<string> list = new List<string> { "1", "2", "3" };
 
         [Fact]
         [Category("AsyncExtensions")]

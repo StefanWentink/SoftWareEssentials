@@ -14,7 +14,7 @@
             var controllerType = typeof(StubController);
             var actual = SwaggerExtensions.GetPath("prefix", controllerType, controllerType.GetMethod(nameof(StubController.Get)));
 
-            const string expected = @"/prefix/Stub/Get(System.Guid id, System.Boolean single)";
+            const string expected = "/prefix/Stub/Get(System.Guid id, System.Boolean single)";
             Assert.Equal(expected, actual);
         }
 
@@ -25,7 +25,7 @@
             var controllerType = typeof(StubController);
             var actual = SwaggerExtensions.GetPath("prefix", controllerType, controllerType.GetMethod(nameof(StubController.Clear)));
 
-            const string expected = @"/prefix/Stub/Clear()";
+            const string expected = "/prefix/Stub/Clear()";
             Assert.Equal(expected, actual);
         }
 

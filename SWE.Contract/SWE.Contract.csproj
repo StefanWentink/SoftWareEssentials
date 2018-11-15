@@ -31,7 +31,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SWE.BasicType" Version="1.0.5" />
     <PackageReference Include="SWE.Model" Version="1.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Data\Command\" />
+    <Folder Include="Models\Data\Query\" />
+  </ItemGroup>
 </Project>

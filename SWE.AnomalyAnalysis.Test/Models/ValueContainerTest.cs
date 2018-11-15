@@ -48,16 +48,16 @@
 
             for (var i = 700; i <= 900; i++)
             {
-                await container.AddAsync(i);
+                await container.AddAsync(i).ConfigureAwait(false);
             }
 
             anomalyLowTriggeredCounter.Should().Be(0);
             anomalyHighTriggeredCounter.Should().Be(0);
             valueChangedTriggeredCounter.Should().Be(0);
 
-            await Task.Delay(1000);
+            await Task.Delay(1000).ConfigureAwait(false);
 
-            await container.AddAsync(800);
+            await container.AddAsync(800).ConfigureAwait(false);
 
             anomalyLowTriggeredCounter.Should().Be(0);
             anomalyHighTriggeredCounter.Should().Be(0);
@@ -102,14 +102,14 @@
 
             for (var i = 700; i <= 900; i++)
             {
-                await container.AddAsync(i);
+                await container.AddAsync(i).ConfigureAwait(false);
             }
 
             anomalyLowTriggeredCounter.Should().Be(0);
             anomalyHighTriggeredCounter.Should().Be(0);
             valueChangedTriggeredCounter.Should().Be(0);
 
-            await container.AddAsync(800);
+            await container.AddAsync(800).ConfigureAwait(false);
 
             anomalyLowTriggeredCounter.Should().Be(0);
             anomalyHighTriggeredCounter.Should().Be(0);
@@ -117,8 +117,8 @@
             value.Should().Be(800);
             triggerValue.Should().Be(Trigger.Count);
 
-            await container.AddAsync(800);
-            await container.AddAsync(900);
+            await container.AddAsync(800).ConfigureAwait(false);
+            await container.AddAsync(900).ConfigureAwait(false);
             valueChangedTriggeredCounter.Should().Be(2);
             value.Should().Be(850);
             triggerValue.Should().Be(Trigger.Count);
@@ -160,16 +160,16 @@
 
             for (var i = 700; i <= 900; i++)
             {
-                await container.AddAsync(i);
+                await container.AddAsync(i).ConfigureAwait(false);
             }
 
             anomalyLowTriggeredCounter.Should().Be(0);
             anomalyHighTriggeredCounter.Should().Be(0);
             valueChangedTriggeredCounter.Should().Be(0);
 
-            await container.AddAsync(200);
-            await container.AddAsync(1800);
-            await container.AddAsync(200);
+            await container.AddAsync(200).ConfigureAwait(false);
+            await container.AddAsync(1800).ConfigureAwait(false);
+            await container.AddAsync(200).ConfigureAwait(false);
 
             anomalyLowTriggeredCounter.Should().Be(2);
             anomalyHighTriggeredCounter.Should().Be(1);
@@ -177,14 +177,14 @@
             value.Should().Be(800);
             triggerValue.Should().Be(Trigger.Anomaly);
 
-            await container.AddAsync(800);
-            await container.AddAsync(900);
-            await container.AddAsync(800);
-            await container.AddAsync(900);
+            await container.AddAsync(800).ConfigureAwait(false);
+            await container.AddAsync(900).ConfigureAwait(false);
+            await container.AddAsync(800).ConfigureAwait(false);
+            await container.AddAsync(900).ConfigureAwait(false);
 
-            await container.AddAsync(1000);
-            await container.AddAsync(600);
-            await container.AddAsync(1000);
+            await container.AddAsync(1000).ConfigureAwait(false);
+            await container.AddAsync(600).ConfigureAwait(false);
+            await container.AddAsync(1000).ConfigureAwait(false);
 
             anomalyLowTriggeredCounter.Should().Be(3);
             anomalyHighTriggeredCounter.Should().Be(3);

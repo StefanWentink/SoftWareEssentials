@@ -17,9 +17,9 @@
             const double ExpectedStandardDeviation = 58.7019451751553;
             var expectedAverage = values.Average();
 
-            var result = StandardDeviationUtilities.GetStandardDeviationAverage(values);
-            var actualAverage = result.average;
-            var actualStandardDeviation = result.standardDeviation;
+            var (average, standardDeviation) = StandardDeviationUtilities.GetStandardDeviationAverage(values);
+            var actualAverage = average;
+            var actualStandardDeviation = standardDeviation;
 
             Assert.True(CompareUtilities.EqualsWithinTolerance(ExpectedStandardDeviation, actualStandardDeviation, 6));
             Assert.True(CompareUtilities.EqualsWithinTolerance(expectedAverage, actualAverage, 6));
@@ -56,14 +56,14 @@
             for (var i = expectedTwo ? 2 : 1; i <= deviationTwo + 1; i++)
             {
                 // 47 values (or 1 extra)
-                values.Add(baseValue + (i % 2 == 0 ? (standardDeviation * 2 + i) : -(standardDeviation * 2 + i)));
+                values.Add(baseValue + (i % 2 == 0 ? ((standardDeviation * 2) + i) : -((standardDeviation * 2) + i)));
             }
 
             const double deviationThree = numberOfValuesOnePercent * (100 - StandardDeviationConstants.ThreeThresHold);
             for (var i = expectedThree ? 2 : 1; i <= deviationThree + 1; i++)
             {
                 // 3 values (or 1 extra)
-                values.Add(baseValue + (i % 2 == 0 ? (standardDeviation * 3 + i) : -(standardDeviation * 3 + i)));
+                values.Add(baseValue + (i % 2 == 0 ? ((standardDeviation * 3) + i) : -((standardDeviation * 3) + i)));
             }
 
             var actual = StandardDeviationUtilities.IsStandardDeviationValid(values, standardDeviation);

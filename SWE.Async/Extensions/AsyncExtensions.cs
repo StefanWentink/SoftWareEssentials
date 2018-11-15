@@ -11,8 +11,7 @@
         /// <typeparam name="TSource"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static Task<TSource> Map<TSource>(
-            TSource source)
+        public static Task<TSource> Map<TSource>(TSource source)
         {
             return Task.FromResult(source);
         }
