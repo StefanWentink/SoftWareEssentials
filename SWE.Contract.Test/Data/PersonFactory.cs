@@ -6,7 +6,12 @@
     {
         internal static PersonStub Create()
         {
-            return Create("Arnold", null);
+            return Create("Arnold");
+        }
+
+        internal static PersonStub Create(string firstName)
+        {
+            return Create(firstName, null);
         }
 
         internal static PersonStub Create(string firstName, string initials)

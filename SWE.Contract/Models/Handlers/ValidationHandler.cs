@@ -3,7 +3,7 @@
     using SWE.Contract.EventArgs;
     using System;
 
-    public abstract class ValidationHandler<T> : ValidationResultHandler<T>
+    public class ValidationHandler<T> : ValidationResultHandler<T>
     {
         private Func<T, bool> ValidCondition { get; set; }
 
@@ -15,7 +15,7 @@
         /// <param name="validCondition"></param>
         /// <exception cref="ArgumentNullException">If <see cref="validCondition"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If <see cref="messageFunction"/> is null.</exception>
-        protected ValidationHandler(Func<T, bool> validCondition, Func<T, string> messageFunction)
+        public ValidationHandler(Func<T, bool> validCondition, Func<T, string> messageFunction)
         {
             ValidCondition = validCondition ??
                 throw new ArgumentNullException(nameof(validCondition), $"{nameof(validCondition)} must not be null.");
