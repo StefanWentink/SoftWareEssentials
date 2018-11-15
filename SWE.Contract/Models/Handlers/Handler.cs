@@ -1,13 +1,11 @@
 ﻿namespace SWE.Contract.Models.Handlers
 {
-    using SWE.Contract.EventArgs;
     using SWE.Contract.Interfaces.Handlers;
     using System;
-    using System.Threading.Tasks;
 
     public abstract class Handler<T>
         : IHandler<T>
-        , IDisposable
+
     {
         protected bool IsDisposed { get; set; }
 

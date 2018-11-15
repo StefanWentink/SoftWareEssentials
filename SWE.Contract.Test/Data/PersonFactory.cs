@@ -21,5 +21,13 @@
                 Initials = initials
             };
         }
+
+        internal static PersonStub CreateEmpty()
+        {
+            return new PersonStub(default, default, new DateTime(1947, 7, 30))
+            {
+                Initials = default
+            };
+        }
     }
 }

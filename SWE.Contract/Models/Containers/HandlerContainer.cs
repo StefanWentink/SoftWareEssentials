@@ -1,7 +1,8 @@
-﻿namespace SWE.Contract.Models.Handlers
+﻿namespace SWE.Contract.Models.Containers
 {
     using SWE.Contract.EventArgs;
     using SWE.Contract.Interfaces.Handlers;
+    using SWE.Contract.Models.Handlers;
     using System.Collections.Generic;
     using System.Linq;
 

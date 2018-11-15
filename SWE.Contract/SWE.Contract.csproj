@@ -31,6 +31,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SWE.BasicType" Version="1.0.5" />
     <PackageReference Include="SWE.Model" Version="1.0.1" />
   </ItemGroup>
 

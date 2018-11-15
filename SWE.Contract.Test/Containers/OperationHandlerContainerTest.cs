@@ -3,12 +3,11 @@
     using FluentAssertions;
     using global::Xunit;
     using SWE.Contract.Interfaces.Handlers;
+    using SWE.Contract.Models.Containers;
     using SWE.Contract.Models.Handlers;
     using SWE.Contract.Test.Data;
     using SWE.Xunit.Attributes;
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
     public class HandlerContainerTest
     {
