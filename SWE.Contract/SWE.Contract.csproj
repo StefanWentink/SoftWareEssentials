@@ -33,17 +33,11 @@
   <ItemGroup>
     <PackageReference Include="SWE.BasicType" Version="1.0.5" />
     <PackageReference Include="SWE.Model" Version="1.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\Data\Command\" />
     <Folder Include="Models\Data\Query\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.Annotations">
-      <HintPath>..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
