@@ -1,9 +1,12 @@
 ﻿namespace SWE.Contract.Models.Handlers
 {
     using SWE.Contract.EventArgs;
+    using SWE.Contract.Interfaces.Handlers;
     using System;
 
-    public abstract class ValidationResultHandler<T> : Handler<T>
+    public abstract class ValidationResultHandler<T>
+        : Handler<T>
+        , IValidationResultHandler<T>
     {
         /// <summary>
         /// If condition not valid.

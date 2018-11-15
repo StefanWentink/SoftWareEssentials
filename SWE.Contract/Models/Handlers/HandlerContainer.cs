@@ -23,7 +23,7 @@
         {
             Handlers = handlers ?? new List<IHandler<T>>();
 
-            foreach (ValidationResultHandler<T> handler in Handlers/*.Where(x => x is ValidationResultHandler<T>)*/)
+            foreach (IValidationResultHandler<T> handler in Handlers/*.Where(x => x is IValidationResultHandler<T>)*/)
             {
                 handler.InvalidResult += OnInvalidResult_Raised;
             }
@@ -41,7 +41,7 @@
         {
             foreach (var handler in Handlers)
             {
-                if (handler is ValidationResultHandler<T> validationHandler)
+                if (handler is IValidationResultHandler<T> validationHandler)
                 {
                     validationHandler.InvalidResult -= OnInvalidResult_Raised;
                 }

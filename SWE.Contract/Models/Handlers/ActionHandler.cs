@@ -24,9 +24,9 @@
         /// <param name="action"></param>
         /// <param name="actionCondition"></param>
         /// <exception cref="ArgumentNullException">If <see cref="action"/> is null.</exception>
-        protected ActionHandler(Action<T> action, Func<T, bool> actionCondition)
+        public ActionHandler(Action<T> action, Func<T, bool> actionCondition)
         {
-            actionCondition = ActionCondition;
+            ActionCondition = actionCondition;
 
             Action = action ??
                 throw new ArgumentNullException(nameof(action), $"{nameof(action)} must not be null.");

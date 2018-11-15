@@ -1,10 +1,10 @@
-﻿using MoreLinq;
-using SWE.EventSourcing.Interfaces.Events;
-using System;
-using System.Collections.Generic;
-
-namespace SWE.EventSourcing.Extensions
+﻿namespace SWE.EventSourcing.Extensions
 {
+    using MoreLinq;
+    using SWE.EventSourcing.Interfaces.Events;
+    using System;
+    using System.Collections.Generic;
+
     public static class EventExtensions
     {
         /// <summary>
